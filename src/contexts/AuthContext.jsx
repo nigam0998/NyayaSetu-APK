@@ -44,6 +44,21 @@ export function AuthProvider({ children }) {
     };
 
     const login = async (email, password) => {
+        // Check for Admin Credentials
+        if (email === 'admin@codebandhu.in' && password === 'admin@123') {
+            const adminUser = {
+                id: 'admin-user',
+                email: 'admin@codebandhu.in',
+                user_metadata: {
+                    first_name: 'Admin',
+                    last_name: 'User'
+                },
+                role: 'admin'
+            };
+            setCurrentUser(adminUser);
+            return { user: adminUser, session: { user: adminUser } };
+        }
+
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password,
@@ -53,11 +68,28 @@ export function AuthProvider({ children }) {
     };
 
     const logout = async () => {
+        if (currentUser?.role === 'admin') {
+            setCurrentUser(null);
+            return;
+        }
         const { error } = await supabase.auth.signOut();
         if (error) throw error;
     };
 
     const updateUser = async (updatedData) => {
+        if (currentUser?.role === 'admin') {
+            // Mock update for admin
+            setCurrentUser(prev => ({
+                ...prev,
+                user_metadata: {
+                    ...prev.user_metadata,
+                    first_name: updatedData.firstName,
+                    last_name: updatedData.lastName
+                }
+            }));
+            return;
+        }
+
         const { data, error } = await supabase.auth.updateUser({
             data: {
                 first_name: updatedData.firstName,
@@ -73,7 +105,8 @@ export function AuthProvider({ children }) {
             ...currentUser,
             firstName: currentUser.user_metadata?.first_name,
             lastName: currentUser.user_metadata?.last_name,
-            email: currentUser.email
+            email: currentUser.email,
+            isAdmin: currentUser.role === 'admin'
         } : null,
         signup,
         login,

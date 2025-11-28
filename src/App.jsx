@@ -12,6 +12,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import LegalAid from './pages/LegalAid';
 import MyDocuments from './pages/MyDocuments';
+import DashboardHome from './pages/DashboardHome';
 import { AuthProvider } from './contexts/AuthContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import Background from './components/Background';
@@ -28,7 +29,7 @@ const AnimatedRoutes = () => {
         <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
         <Route path="/signup" element={<PageTransition><Signup /></PageTransition>} />
         <Route path="/dashboard" element={<PageTransition><DashboardLayout /></PageTransition>}>
-          <Route index element={<Navigate to="/dashboard/upload" replace />} />
+          <Route index element={<PageTransition><DashboardHome /></PageTransition>} />
           <Route path="upload" element={<PageTransition><Upload /></PageTransition>} />
           <Route path="documents" element={<PageTransition><MyDocuments /></PageTransition>} />
           <Route path="settings" element={<PageTransition><Settings /></PageTransition>} />
@@ -42,24 +43,65 @@ const AnimatedRoutes = () => {
   );
 };
 
+import { ThemeProvider } from './contexts/ThemeContext';
+
+import { ConfigProvider } from './contexts/ConfigContext';
+import AdminLayout from './layouts/AdminLayout';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import AdminSettings from './pages/admin/AdminSettings';
+import AdminUsers from './pages/admin/AdminUsers';
+import Onboarding from './pages/Onboarding';
+
 function App() {
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const timer = setTimeout(() => setLoading(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <LanguageProvider>
-      <BrowserRouter>
-        <Background />
-        <AuthProvider>
-          {loading && <PageLoader />}
-          {!loading && <AnimatedRoutes />}
-        </AuthProvider>
-      </BrowserRouter>
-    </LanguageProvider>
+    <ConfigProvider>
+      <ThemeProvider>
+        <LanguageProvider>
+          <BrowserRouter>
+            <Background />
+            <AuthProvider>
+              {loading && <PageLoader />}
+              {!loading && (
+                <AnimatePresence mode="wait">
+                  <Routes>
+                    {/* Public Routes */}
+                    <Route path="/" element={<PageTransition><Landing /></PageTransition>} />
+                    <Route path="/onboarding" element={<PageTransition><Onboarding /></PageTransition>} />
+                    <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
+                    <Route path="/signup" element={<PageTransition><Signup /></PageTransition>} />
+
+                    {/* User Dashboard Routes */}
+                    <Route path="/dashboard" element={<PageTransition><DashboardLayout /></PageTransition>}>
+                      <Route index element={<PageTransition><DashboardHome /></PageTransition>} />
+                      <Route path="upload" element={<PageTransition><Upload /></PageTransition>} />
+                      <Route path="documents" element={<PageTransition><MyDocuments /></PageTransition>} />
+                      <Route path="settings" element={<PageTransition><Settings /></PageTransition>} />
+                      <Route path="processing" element={<PageTransition><Processing /></PageTransition>} />
+                      <Route path="results" element={<PageTransition><Results /></PageTransition>} />
+                      <Route path="legal-aid" element={<PageTransition><LegalAid /></PageTransition>} />
+                      <Route path="account" element={<PageTransition><Account /></PageTransition>} />
+                    </Route>
+
+                    {/* Admin Routes */}
+                    <Route path="/admin" element={<PageTransition><AdminLayout /></PageTransition>}>
+                      <Route index element={<PageTransition><AdminDashboard /></PageTransition>} />
+                      <Route path="settings" element={<PageTransition><AdminSettings /></PageTransition>} />
+                      <Route path="users" element={<PageTransition><AdminUsers /></PageTransition>} />
+                    </Route>
+                  </Routes>
+                </AnimatePresence>
+              )}
+            </AuthProvider>
+          </BrowserRouter>
+        </LanguageProvider>
+      </ThemeProvider>
+    </ConfigProvider>
   );
 }
 

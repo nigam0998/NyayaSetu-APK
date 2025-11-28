@@ -3,26 +3,67 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    --bg-primary: #05050a;
+    --text-primary: #ffffff;
+    --glass-surface: rgba(255, 255, 255, 0.03);
+    --glass-border: rgba(255, 255, 255, 0.08);
+  }
+
+  :root.light {
+    --bg-primary: #f8fafc;
+    --text-primary: #0f172a;
+    --glass-surface: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(0, 0, 0, 0.05);
+  }
+
   body {
-    @apply bg-ios-bg text-white antialiased;
+    @apply bg-[var(--bg-primary)] text-[var(--text-primary)] antialiased selection:bg-neon-purple selection:text-white transition-colors duration-300;
     font-feature-settings: "cv11", "ss01";
   }
 
-  ::selection {
-    @apply bg-ios-accent text-white;
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-500/20 rounded-full hover:bg-gray-500/40 transition-colors;
   }
 }
 
 @layer utilities {
-  .glass {
-    @apply bg-ios-surface backdrop-blur-xl border border-white/10 shadow-2xl;
+  .glass-card {
+    @apply bg-[var(--glass-surface)] backdrop-blur-xl border border-[var(--glass-border)] shadow-2xl;
   }
 
-  .glass-hover {
-    @apply hover:bg-ios-surfaceHigh transition-all duration-300;
+  .glass-panel {
+    @apply bg-[#0a0a12]/80 backdrop-blur-2xl border-t border-white/5;
   }
 
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-white/50;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white/90 to-white/60;
+  }
+
+  .text-gradient-neon {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink;
+  }
+
+  .neon-glow {
+    box-shadow: 0 0 20px rgba(188, 19, 254, 0.15);
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }

@@ -93,7 +93,7 @@ export default function Upload() {
         <div className="max-w-3xl mx-auto">
             <div className="mb-8">
                 <h2 className="text-3xl font-bold text-white mb-2">{t('upload.title')}</h2>
-                <p className="text-ios-textSec">{t('upload.subtitle')}</p>
+                <p className="text-slate-400">{t('upload.subtitle')}</p>
             </div>
 
             <div
@@ -101,22 +101,22 @@ export default function Upload() {
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
                 className={cn(
-                    "glass border-2 border-dashed rounded-3xl p-16 text-center transition-all duration-300",
+                    "bg-glass-surface border-2 border-dashed rounded-3xl p-16 text-center transition-all duration-300",
                     isDragging
-                        ? "border-ios-accent bg-ios-accent/10 scale-[1.02]"
-                        : "border-white/10 hover:border-ios-accent/50 hover:bg-white/5",
-                    file ? "border-ios-success/50 bg-ios-success/5" : ""
+                        ? "border-neon-blue bg-neon-blue/10 scale-[1.02]"
+                        : "border-white/10 hover:border-neon-blue/50 hover:bg-white/5",
+                    file ? "border-green-500/50 bg-green-500/5" : ""
                 )}
             >
                 {!file ? (
                     <div className="flex flex-col items-center">
-                        <div className="w-20 h-20 bg-gradient-to-br from-ios-accent to-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 group">
+                        <div className="w-20 h-20 bg-gradient-to-br from-neon-blue to-neon-purple rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-neon-blue/20 group">
                             <UploadCloud className="w-10 h-10 text-white group-hover:scale-110 transition-transform" />
                         </div>
                         <h3 className="text-xl font-bold text-white mb-3">
                             {t('upload.dragDrop')}
                         </h3>
-                        <p className="text-ios-textSec mb-8">{t('upload.browse')}</p>
+                        <p className="text-slate-400 mb-8">{t('upload.browse')}</p>
                         <input
                             type="file"
                             accept=".pdf"
@@ -139,12 +139,12 @@ export default function Upload() {
                             </div>
                             <div className="text-left">
                                 <p className="font-bold text-white text-lg">{file.name}</p>
-                                <p className="text-sm text-ios-textSec">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                                <p className="text-sm text-slate-400">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
                             </div>
                         </div>
                         <button
                             onClick={() => setFile(null)}
-                            className="p-3 hover:bg-white/10 rounded-full text-ios-textSec hover:text-white transition-colors"
+                            className="p-3 hover:bg-white/10 rounded-full text-slate-400 hover:text-white transition-colors"
                         >
                             <X className="w-6 h-6" />
                         </button>
@@ -153,11 +153,11 @@ export default function Upload() {
             </div>
 
             {file && (
-                <div className="mt-10 flex justify-end animate-fade-in-up">
+                <div className="mt-10 flex justify-end animate-slide-up">
                     <button
                         onClick={handleProcess}
                         disabled={isExtracting}
-                        className="flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-ios-accent to-blue-600 text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-blue-500/30 transition-all hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:transform-none"
+                        className="flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-neon-blue to-neon-purple text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-neon-blue/30 transition-all hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:transform-none"
                     >
                         {isExtracting ? (
                             <>

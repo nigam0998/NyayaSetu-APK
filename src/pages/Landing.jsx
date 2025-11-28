@@ -1,126 +1,166 @@
-import React from 'react';
-import { ArrowRight, FileText, Shield, Brain, Scale, Building2, Users } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ArrowRight, Shield, Zap, Brain, FileText, Lock, Globe, Building2, Users, Scale } from 'lucide-react';
+import Navbar from '../components/Navbar';
 import { cn } from '../lib/utils';
-import AshokaChakra from '../components/AshokaChakra';
+import { useLanguage } from '../contexts/LanguageContext';
 
 export default function Landing() {
-    return (
-        <div className="min-h-screen bg-ios-bg font-sans text-ios-text selection:bg-ios-accent selection:text-white overflow-x-hidden">
-            {/* Background Effects */}
-            <div className="fixed inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-ios-accent/20 via-ios-bg to-ios-bg -z-10" />
-            <div className="fixed top-0 left-0 w-96 h-96 bg-india-saffron/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow" />
-            <div className="fixed bottom-0 right-0 w-96 h-96 bg-india-green/10 rounded-full blur-3xl pointer-events-none animate-pulse-slow" />
+    const { t } = useLanguage();
+    const navigate = useNavigate();
 
-            {/* Navigation */}
-            <nav className="fixed top-0 w-full z-50 glass border-b border-white/5">
-                <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-                    <div className="flex items-center gap-3 group cursor-pointer">
-                        <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center shadow-lg shadow-india-saffron/20">
-                            <AshokaChakra className="w-8 h-8 text-india-saffron" />
-                        </div>
-                        <span className="text-2xl font-bold text-white tracking-tight group-hover:text-ios-accent transition-colors">CodeBandhu</span>
-                    </div>
-                    <div className="flex items-center gap-8">
-                        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-ios-textSec">
-                            <a href="#features" className="hover:text-white transition-colors hover:scale-105 transform duration-200">Features</a>
-                            <a href="#about" className="hover:text-white transition-colors hover:scale-105 transform duration-200">About</a>
-                            <a href="#contact" className="hover:text-white transition-colors hover:scale-105 transform duration-200">Contact</a>
-                        </div>
-                        <div className="flex gap-4">
-                            <Link to="/login" className="px-6 py-2.5 text-white hover:text-ios-accent font-semibold transition-colors relative group">
-                                Login
-                                <span className="absolute bottom-1 left-6 right-6 h-0.5 bg-ios-accent scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
-                            </Link>
-                            <Link to="/signup" className="px-6 py-2.5 bg-white text-black rounded-xl hover:bg-gray-200 font-bold transition-all shadow-lg hover:shadow-white/20 hover:-translate-y-0.5 active:translate-y-0">
-                                Get Started
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </nav>
+    useEffect(() => {
+        const hasSeen = localStorage.getItem('hasSeenOnboarding');
+        if (!hasSeen) {
+            navigate('/onboarding');
+        }
+    }, [navigate]);
+
+    return (
+        <div className="min-h-screen bg-dark-bg text-white overflow-x-hidden">
+            <Navbar />
 
             {/* Hero Section */}
-            <header className="relative pt-32 pb-40 overflow-hidden">
-                <div className="max-w-7xl mx-auto px-6 text-center relative z-10">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md mb-8 animate-fade-in-up">
-                        <span className="w-2 h-2 bg-india-green rounded-full animate-pulse"></span>
-                        <span className="text-sm font-medium text-ios-textSec">Empowering Digital India</span>
+            <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+                {/* Background Effects */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-neon-blue/20 rounded-full blur-[120px] animate-pulse-glow" />
+                    <div className="absolute bottom-0 right-0 w-[800px] h-[800px] bg-neon-purple/20 rounded-full blur-[120px] animate-pulse-glow" style={{ animationDelay: '2s' }} />
+                </div>
+
+                <div className="relative z-10 max-w-7xl mx-auto px-6 text-center">
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 animate-slide-up">
+                        <span className="w-2 h-2 rounded-full bg-neon-green animate-pulse" />
+                        <span className="text-sm font-medium text-slate-300">{t('landing.hero.badge')}</span>
                     </div>
-                    <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-8 tracking-tight leading-tight">
-                        Democratizing Legal <br />
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-india-saffron via-white to-india-green animate-gradient">
-                            Justice for Every Indian
+
+                    <h1 className="text-5xl md:text-7xl font-bold mb-8 leading-tight animate-slide-up" style={{ animationDelay: '0.1s' }}>
+                        {t('landing.hero.title')} <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink">
+                            {t('landing.hero.subtitle')}
                         </span>
                     </h1>
-                    <p className="text-xl text-ios-textSec mb-12 max-w-2xl mx-auto leading-relaxed">
-                        CodeBandhu bridges the gap between complex legal documents and the common citizen.
-                        Powered by advanced AI to Simplify, Summarize, and Advise.
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-5 justify-center">
-                        <Link to="/signup" className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-gradient-to-r from-india-saffron to-orange-600 rounded-2xl hover:shadow-orange-500/40 transition-all shadow-xl shadow-orange-500/20 hover:-translate-y-1">
-                            Start Free Trial <ArrowRight className="ml-2 w-5 h-5" />
-                        </Link>
-                        <button className="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all hover:-translate-y-1 backdrop-blur-md">
-                            View Demo
-                        </button>
-                    </div>
-                </div>
-            </header>
 
-            {/* Stats Section */}
-            <section className="py-10 border-y border-white/5 bg-white/5 backdrop-blur-sm">
-                <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                    <div>
-                        <p className="text-4xl font-bold text-india-blue mb-1 drop-shadow-lg">10k+</p>
-                        <p className="text-sm text-ios-textSec font-medium">Documents Processed</p>
-                    </div>
-                    <div>
-                        <p className="text-4xl font-bold text-india-saffron mb-1 drop-shadow-lg">500+</p>
-                        <p className="text-sm text-ios-textSec font-medium">Legal Experts</p>
-                    </div>
-                    <div>
-                        <p className="text-4xl font-bold text-india-green mb-1 drop-shadow-lg">12</p>
-                        <p className="text-sm text-ios-textSec font-medium">Indian Languages</p>
-                    </div>
-                    <div>
-                        <p className="text-4xl font-bold text-white mb-1 drop-shadow-lg">24/7</p>
-                        <p className="text-sm text-ios-textSec font-medium">AI Assistance</p>
+                    <p className="text-xl text-slate-400 max-w-2xl mx-auto mb-12 animate-slide-up" style={{ animationDelay: '0.2s' }}>
+                        {t('landing.hero.description')}
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up" style={{ animationDelay: '0.3s' }}>
+                        <Link
+                            to="/signup"
+                            className="px-8 py-4 rounded-full bg-gradient-to-r from-neon-blue to-neon-purple text-white font-bold text-lg shadow-[0_0_30px_rgba(0,243,255,0.4)] hover:shadow-[0_0_50px_rgba(188,19,254,0.6)] transition-all hover:scale-105 flex items-center gap-2"
+                        >
+                            {t('landing.hero.startFree')} <ArrowRight className="w-5 h-5" />
+                        </Link>
+                        <Link
+                            to="/login"
+                            className="px-8 py-4 rounded-full bg-white/5 border border-white/10 text-white font-bold text-lg hover:bg-white/10 transition-all hover:scale-105 backdrop-blur-md"
+                        >
+                            {t('landing.hero.liveDemo')}
+                        </Link>
                     </div>
                 </div>
             </section>
 
-            {/* Features Grid */}
-            <section id="features" className="px-6 py-32 relative">
-                <div className="max-w-7xl mx-auto">
+            {/* Features Section */}
+            <section id="features" className="py-32 relative">
+                <div className="max-w-7xl mx-auto px-6">
                     <div className="text-center mb-20">
-                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Why Choose CodeBandhu?</h2>
-                        <p className="text-lg text-ios-textSec max-w-2xl mx-auto">Built specifically for the Indian legal framework to help citizens, students, and professionals.</p>
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">{t('landing.features.title')}</h2>
+                        <p className="text-lg text-slate-400 max-w-2xl mx-auto">{t('landing.features.subtitle')}</p>
                     </div>
 
                     <div className="grid md:grid-cols-3 gap-8">
                         <FeatureCard
-                            icon={<FileText className="w-8 h-8 text-india-blue" />}
-                            title="Instant Simplification"
-                            description="Translate complex legalese into plain English (and Hindi soon) using our Legal-BERT powered engine."
-                            color="bg-blue-500/10 border-blue-500/20"
+                            icon={<FileText className="w-8 h-8 text-neon-blue" />}
+                            title={t('landing.features.simplification.title')}
+                            description={t('landing.features.simplification.desc')}
+                            color="bg-neon-blue/10 border-neon-blue/20"
                         />
                         <FeatureCard
-                            icon={<Brain className="w-8 h-8 text-india-saffron" />}
-                            title="Smart Summarization"
-                            description="Get concise summaries that highlight the Issue, Facts, Arguments, and Conclusions automatically."
-                            color="bg-orange-500/10 border-orange-500/20"
+                            icon={<Brain className="w-8 h-8 text-neon-purple" />}
+                            title={t('landing.features.summarization.title')}
+                            description={t('landing.features.summarization.desc')}
+                            color="bg-neon-purple/10 border-neon-purple/20"
                         />
                         <FeatureCard
-                            icon={<Shield className="w-8 h-8 text-india-green" />}
-                            title="Actionable Advisory"
-                            description="Receive non-binding legal suggestions on what steps to take next (e.g., RTI, FIR, Grievance)."
-                            color="bg-green-500/10 border-green-500/20"
+                            icon={<Shield className="w-8 h-8 text-neon-pink" />}
+                            title={t('landing.features.advisory.title')}
+                            description={t('landing.features.advisory.desc')}
+                            color="bg-neon-pink/10 border-neon-pink/20"
                         />
                     </div>
                 </div>
             </section>
 
+            {/* How it Works Section */}
+            <section id="how-it-works" className="py-32 relative overflow-hidden">
+                <div className="absolute inset-0 bg-white/5 -z-10" />
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center mb-20">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">{t('landing.howItWorks.title')}</h2>
+                        <p className="text-lg text-slate-400 max-w-2xl mx-auto">{t('landing.howItWorks.subtitle')}</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8 relative">
+                        {/* Connecting Line */}
+                        <div className="hidden md:block absolute top-1/2 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-neon-blue/50 to-transparent -translate-y-1/2 z-0" />
+
+                        {[
+                            { step: "01", title: t('landing.howItWorks.step1.title'), desc: t('landing.howItWorks.step1.desc'), icon: FileText },
+                            { step: "02", title: t('landing.howItWorks.step2.title'), desc: t('landing.howItWorks.step2.desc'), icon: Brain },
+                            { step: "03", title: t('landing.howItWorks.step3.title'), desc: t('landing.howItWorks.step3.desc'), icon: Zap }
+                        ].map((item, i) => (
+                            <div key={i} className="relative z-10 bg-dark-bg p-8 rounded-3xl border border-white/10 text-center group hover:border-neon-blue/50 transition-colors">
+                                <div className="w-16 h-16 mx-auto bg-white/5 rounded-2xl flex items-center justify-center mb-6 text-neon-blue group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(0,243,255,0.2)]">
+                                    <item.icon className="w-8 h-8" />
+                                </div>
+                                <div className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-slate-400 mb-4">
+                                    STEP {item.step}
+                                </div>
+                                <h3 className="text-xl font-bold text-white mb-3">{item.title}</h3>
+                                <p className="text-slate-400">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* Testimonials Section */}
+            <section id="testimonials" className="py-32 relative">
+                <div className="max-w-7xl mx-auto px-6">
+                    <div className="text-center mb-20">
+                        <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">{t('landing.testimonials.title')}</h2>
+                        <p className="text-lg text-slate-400 max-w-2xl mx-auto">{t('landing.testimonials.subtitle')}</p>
+                    </div>
+
+                    <div className="grid md:grid-cols-3 gap-8">
+                        {[
+                            { name: "Rahul S.", role: "Small Business Owner", text: "CodeBandhu saved me thousands in legal fees. I understood my rental agreement in minutes!" },
+                            { name: "Priya M.", role: "Law Student", text: "An incredible tool for quick case summaries. It helps me prepare for my internships so much faster." },
+                            { name: "Amit K.", role: "Freelancer", text: "I was confused by a client contract. CodeBandhu highlighted the risky clauses instantly. Highly recommended!" }
+                        ].map((testimonial, i) => (
+                            <div key={i} className="bg-glass-surface p-8 rounded-3xl border border-glass-border hover:bg-white/5 transition-colors">
+                                <div className="flex gap-1 mb-4">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <Zap key={star} className="w-4 h-4 text-yellow-400 fill-yellow-400" />
+                                    ))}
+                                </div>
+                                <p className="text-slate-300 mb-6 leading-relaxed">"{testimonial.text}"</p>
+                                <div className="flex items-center gap-4">
+                                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-neon-blue to-neon-purple flex items-center justify-center text-white font-bold">
+                                        {testimonial.name[0]}
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-white">{testimonial.name}</h4>
+                                        <p className="text-xs text-slate-500">{testimonial.role}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
 
             {/* About Section */}
             <section id="about" className="py-32 relative overflow-hidden">
@@ -128,57 +168,57 @@ export default function Landing() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid md:grid-cols-2 gap-16 items-center">
                         <div>
-                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-full text-sm font-medium mb-6">
+                            <div className="inline-flex items-center gap-2 px-3 py-1 bg-neon-blue/10 text-neon-blue border border-neon-blue/20 rounded-full text-sm font-medium mb-6">
                                 <Building2 className="w-4 h-4" />
-                                <span>Our Mission</span>
+                                <span>{t('landing.about.mission')}</span>
                             </div>
-                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Bridging the Legal Gap</h2>
-                            <p className="text-lg text-ios-textSec mb-6 leading-relaxed">
-                                In India, millions of citizens struggle to understand their legal rights due to complex language and lack of accessible resources.
+                            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">{t('landing.about.title')}</h2>
+                            <p className="text-lg text-slate-400 mb-6 leading-relaxed">
+                                {t('landing.about.desc1')}
                             </p>
-                            <p className="text-lg text-ios-textSec mb-8 leading-relaxed">
-                                <span className="font-semibold text-white">CodeBandhu</span> is an AI-powered initiative designed to democratize legal access. We combine cutting-edge Natural Language Processing (NLP) with deep legal expertise to make justice accessible to everyone, from rural citizens to urban professionals.
+                            <p className="text-lg text-slate-400 mb-8 leading-relaxed">
+                                <span className="font-semibold text-white">CodeBandhu</span> {t('landing.about.desc2')}
                             </p>
                             <div className="flex gap-12">
                                 <div>
                                     <p className="text-4xl font-bold text-white mb-2">98%</p>
-                                    <p className="text-sm text-ios-textSec">Accuracy Rate</p>
+                                    <p className="text-sm text-slate-400">{t('landing.about.stats.accuracy')}</p>
                                 </div>
                                 <div>
                                     <p className="text-4xl font-bold text-white mb-2">24/7</p>
-                                    <p className="text-sm text-ios-textSec">Availability</p>
+                                    <p className="text-sm text-slate-400">{t('landing.about.stats.availability')}</p>
                                 </div>
                             </div>
                         </div>
                         <div className="relative">
-                            <div className="absolute inset-0 bg-gradient-to-br from-india-saffron/20 to-india-green/20 rounded-3xl transform rotate-3 blur-xl"></div>
-                            <div className="relative glass p-10 rounded-3xl">
+                            <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/20 to-neon-blue/20 rounded-3xl transform rotate-3 blur-xl"></div>
+                            <div className="relative bg-glass-surface p-10 rounded-3xl border border-glass-border">
                                 <div className="space-y-8">
                                     <div className="flex items-start gap-5">
-                                        <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-india-blue shrink-0 border border-white/10">
+                                        <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-neon-blue shrink-0 border border-white/10">
                                             <Users className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-white text-lg mb-2">For Citizens</h4>
-                                            <p className="text-ios-textSec text-sm leading-relaxed">Understand contracts, notices, and rights in simple language.</p>
+                                            <h4 className="font-bold text-white text-lg mb-2">{t('landing.about.citizens.title')}</h4>
+                                            <p className="text-slate-400 text-sm leading-relaxed">{t('landing.about.citizens.desc')}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-5">
-                                        <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-india-saffron shrink-0 border border-white/10">
+                                        <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-neon-purple shrink-0 border border-white/10">
                                             <Scale className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-white text-lg mb-2">For Legal Aid</h4>
-                                            <p className="text-ios-textSec text-sm leading-relaxed">Accelerate case processing and document review.</p>
+                                            <h4 className="font-bold text-white text-lg mb-2">{t('landing.about.legalAid.title')}</h4>
+                                            <p className="text-slate-400 text-sm leading-relaxed">{t('landing.about.legalAid.desc')}</p>
                                         </div>
                                     </div>
                                     <div className="flex items-start gap-5">
-                                        <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-india-green shrink-0 border border-white/10">
+                                        <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center text-neon-pink shrink-0 border border-white/10">
                                             <Building2 className="w-6 h-6" />
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-white text-lg mb-2">For NGOs</h4>
-                                            <p className="text-ios-textSec text-sm leading-relaxed">Empower communities with instant legal literacy tools.</p>
+                                            <h4 className="font-bold text-white text-lg mb-2">{t('landing.about.ngos.title')}</h4>
+                                            <p className="text-slate-400 text-sm leading-relaxed">{t('landing.about.ngos.desc')}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -191,33 +231,33 @@ export default function Landing() {
             {/* Contact Section */}
             <section id="contact" className="py-32 relative">
                 <div className="max-w-3xl mx-auto px-6 text-center">
-                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Get in Touch</h2>
-                    <p className="text-lg text-ios-textSec mb-12">
-                        Have questions about CodeBandhu? Our team is here to help you navigate the platform.
+                    <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">{t('landing.contact.title')}</h2>
+                    <p className="text-lg text-slate-400 mb-12">
+                        {t('landing.contact.subtitle')}
                     </p>
 
-                    <div className="glass p-10 rounded-3xl text-left">
+                    <div className="bg-glass-surface p-10 rounded-3xl text-left border border-glass-border">
                         <form className="space-y-6">
                             <div className="grid md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-sm font-medium text-ios-textSec mb-2">First Name</label>
-                                    <input type="text" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-ios-accent focus:border-transparent outline-none transition-all placeholder-white/20" placeholder="Aditya" />
+                                    <label className="block text-sm font-medium text-slate-400 mb-2">{t('landing.contact.firstName')}</label>
+                                    <input type="text" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-neon-blue focus:border-transparent outline-none transition-all placeholder-white/20" placeholder="Aditya" />
                                 </div>
                                 <div>
-                                    <label className="block text-sm font-medium text-ios-textSec mb-2">Last Name</label>
-                                    <input type="text" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-ios-accent focus:border-transparent outline-none transition-all placeholder-white/20" placeholder="Sharma" />
+                                    <label className="block text-sm font-medium text-slate-400 mb-2">{t('landing.contact.lastName')}</label>
+                                    <input type="text" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-neon-blue focus:border-transparent outline-none transition-all placeholder-white/20" placeholder="Sharma" />
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-ios-textSec mb-2">Email Address</label>
-                                <input type="email" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-ios-accent focus:border-transparent outline-none transition-all placeholder-white/20" placeholder="aditya@example.com" />
+                                <label className="block text-sm font-medium text-slate-400 mb-2">{t('landing.contact.email')}</label>
+                                <input type="email" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-neon-blue focus:border-transparent outline-none transition-all placeholder-white/20" placeholder="aditya@example.com" />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-ios-textSec mb-2">Message</label>
-                                <textarea rows="4" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-ios-accent focus:border-transparent outline-none transition-all placeholder-white/20" placeholder="How can we help you?"></textarea>
+                                <label className="block text-sm font-medium text-slate-400 mb-2">{t('landing.contact.message')}</label>
+                                <textarea rows="4" className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white focus:ring-2 focus:ring-neon-blue focus:border-transparent outline-none transition-all placeholder-white/20" placeholder="How can we help you?"></textarea>
                             </div>
                             <button type="button" className="w-full py-4 bg-white text-black font-bold rounded-xl hover:bg-gray-200 transition-colors shadow-lg">
-                                Send Message
+                                {t('landing.contact.send')}
                             </button>
                         </form>
                     </div>
@@ -225,40 +265,39 @@ export default function Landing() {
             </section>
 
             {/* Footer */}
-            <footer className="bg-black text-ios-textSec py-16 border-t border-white/10">
+            <footer className="bg-black text-slate-400 py-16 border-t border-white/10">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid md:grid-cols-4 gap-12 mb-12">
                         <div className="col-span-1 md:col-span-2">
                             <div className="flex items-center gap-3 mb-6">
-                                <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center shadow-lg shadow-india-saffron/20">
-                                    <AshokaChakra className="w-8 h-8 text-india-saffron" />
+                                <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center shadow-lg shadow-neon-blue/20">
+                                    <Shield className="w-8 h-8 text-neon-blue" />
                                 </div>
                                 <span className="text-2xl font-bold text-white">CodeBandhu</span>
                             </div>
                             <p className="max-w-xs text-sm leading-relaxed">
-                                Making Indian Law simple, accessible, and understandable for everyone through the power of AI.
+                                {t('landing.footer.desc')}
                             </p>
                         </div>
                         <div>
-                            <h4 className="text-white font-bold mb-6">Product</h4>
+                            <h4 className="text-white font-bold mb-6">{t('landing.footer.product')}</h4>
                             <ul className="space-y-3 text-sm">
-                                <li><a href="#features" className="hover:text-white transition-colors">Features</a></li>
-                                <li><a href="#pricing" className="hover:text-white transition-colors">Pricing</a></li>
-                                <li><a href="/login" className="hover:text-white transition-colors">Login</a></li>
+                                <li><a href="#features" className="hover:text-white transition-colors">{t('nav.features')}</a></li>
+                                <li><Link to="/login" className="hover:text-white transition-colors">{t('nav.signIn')}</Link></li>
                             </ul>
                         </div>
                         <div>
-                            <h4 className="text-white font-bold mb-6">Legal</h4>
+                            <h4 className="text-white font-bold mb-6">{t('landing.footer.legal')}</h4>
                             <ul className="space-y-3 text-sm">
-                                <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Terms of Service</a></li>
-                                <li><a href="#" className="hover:text-white transition-colors">Disclaimer</a></li>
+                                <li><a href="#" className="hover:text-white transition-colors">{t('landing.footer.privacy')}</a></li>
+                                <li><a href="#" className="hover:text-white transition-colors">{t('landing.footer.terms')}</a></li>
+                                <li><a href="#" className="hover:text-white transition-colors">{t('landing.footer.disclaimer')}</a></li>
                             </ul>
                         </div>
                     </div>
                     <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-                        <p>© 2025 CodeBandhu. All rights reserved.</p>
-                        <p>Made with ❤️ for India</p>
+                        <p>© 2025 CodeBandhu. {t('landing.footer.rights')}</p>
+                        <p>{t('landing.footer.madeWith')}</p>
                     </div>
                 </div>
             </footer>
@@ -268,12 +307,12 @@ export default function Landing() {
 
 function FeatureCard({ icon, title, description, color }) {
     return (
-        <div className="glass p-8 rounded-3xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 group">
+        <div className="bg-glass-surface p-8 rounded-3xl hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 group border border-glass-border">
             <div className={cn("w-16 h-16 rounded-2xl flex items-center justify-center mb-6 border", color)}>
                 {icon}
             </div>
-            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-ios-accent transition-colors">{title}</h3>
-            <p className="text-ios-textSec leading-relaxed">{description}</p>
+            <h3 className="text-xl font-bold text-white mb-3 group-hover:text-neon-blue transition-colors">{title}</h3>
+            <p className="text-slate-400 leading-relaxed">{description}</p>
         </div>
     );
 }
