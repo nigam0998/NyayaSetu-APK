@@ -4,6 +4,25 @@
 
 @layer base {
   body {
-    @apply bg-slate-50 text-slate-900 antialiased;
+    @apply bg-ios-bg text-white antialiased;
+    font-feature-settings: "cv11", "ss01";
+  }
+
+  ::selection {
+    @apply bg-ios-accent text-white;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-ios-surface backdrop-blur-xl border border-white/10 shadow-2xl;
+  }
+
+  .glass-hover {
+    @apply hover:bg-ios-surfaceHigh transition-all duration-300;
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-white/50;
   }
 }

@@ -161,7 +161,7 @@ export default function AIAssistant() {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             placeholder="Ask a legal question..."
-                            className="flex-1 px-4 py-2 rounded-full border border-slate-200 focus:border-india-blue focus:ring-1 focus:ring-india-blue outline-none text-sm"
+                            className="flex-1 px-4 py-2 rounded-full border border-slate-200 focus:border-india-blue focus:ring-1 focus:ring-india-blue outline-none text-sm text-slate-900"
                         />
                         <button
                             type="submit"

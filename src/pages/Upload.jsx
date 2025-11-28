@@ -92,8 +92,8 @@ export default function Upload() {
     return (
         <div className="max-w-3xl mx-auto">
             <div className="mb-8">
-                <h2 className="text-2xl font-bold text-slate-900">{t('upload.title')}</h2>
-                <p className="text-slate-600">{t('upload.subtitle')}</p>
+                <h2 className="text-3xl font-bold text-white mb-2">{t('upload.title')}</h2>
+                <p className="text-ios-textSec">{t('upload.subtitle')}</p>
             </div>
 
             <div
@@ -101,22 +101,22 @@ export default function Upload() {
                 onDragLeave={handleDragLeave}
                 onDrop={handleDrop}
                 className={cn(
-                    "border-2 border-dashed rounded-2xl p-12 text-center transition-all",
+                    "glass border-2 border-dashed rounded-3xl p-16 text-center transition-all duration-300",
                     isDragging
-                        ? "border-indigo-500 bg-indigo-50"
-                        : "border-slate-300 hover:border-indigo-400 bg-white",
-                    file ? "border-indigo-200 bg-indigo-50/30" : ""
+                        ? "border-ios-accent bg-ios-accent/10 scale-[1.02]"
+                        : "border-white/10 hover:border-ios-accent/50 hover:bg-white/5",
+                    file ? "border-ios-success/50 bg-ios-success/5" : ""
                 )}
             >
                 {!file ? (
                     <div className="flex flex-col items-center">
-                        <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
-                            <UploadCloud className="w-8 h-8 text-indigo-600" />
+                        <div className="w-20 h-20 bg-gradient-to-br from-ios-accent to-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 group">
+                            <UploadCloud className="w-10 h-10 text-white group-hover:scale-110 transition-transform" />
                         </div>
-                        <h3 className="text-lg font-semibold text-slate-900 mb-2">
+                        <h3 className="text-xl font-bold text-white mb-3">
                             {t('upload.dragDrop')}
                         </h3>
-                        <p className="text-slate-500 mb-6">{t('upload.browse')}</p>
+                        <p className="text-ios-textSec mb-8">{t('upload.browse')}</p>
                         <input
                             type="file"
                             accept=".pdf"
@@ -126,47 +126,47 @@ export default function Upload() {
                         />
                         <label
                             htmlFor="file-upload"
-                            className="px-6 py-3 bg-white border border-slate-300 rounded-lg text-slate-700 font-medium hover:bg-slate-50 cursor-pointer transition-colors"
+                            className="px-8 py-3.5 bg-white text-black rounded-xl font-bold hover:bg-gray-200 cursor-pointer transition-all shadow-lg hover:shadow-white/20 hover:-translate-y-0.5"
                         >
                             {t('upload.selectFile')}
                         </label>
                     </div>
                 ) : (
-                    <div className="flex items-center justify-between p-4 bg-white rounded-xl border border-indigo-100 shadow-sm">
-                        <div className="flex items-center gap-4">
-                            <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
-                                <File className="w-6 h-6 text-red-600" />
+                    <div className="flex items-center justify-between p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-md">
+                        <div className="flex items-center gap-5">
+                            <div className="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center border border-red-500/20">
+                                <File className="w-7 h-7 text-red-500" />
                             </div>
                             <div className="text-left">
-                                <p className="font-semibold text-slate-900">{file.name}</p>
-                                <p className="text-sm text-slate-500">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
+                                <p className="font-bold text-white text-lg">{file.name}</p>
+                                <p className="text-sm text-ios-textSec">{(file.size / 1024 / 1024).toFixed(2)} MB</p>
                             </div>
                         </div>
                         <button
                             onClick={() => setFile(null)}
-                            className="p-2 hover:bg-slate-100 rounded-full text-slate-400 hover:text-slate-600"
+                            className="p-3 hover:bg-white/10 rounded-full text-ios-textSec hover:text-white transition-colors"
                         >
-                            <X className="w-5 h-5" />
+                            <X className="w-6 h-6" />
                         </button>
                     </div>
                 )}
             </div>
 
             {file && (
-                <div className="mt-8 flex justify-end">
+                <div className="mt-10 flex justify-end animate-fade-in-up">
                     <button
                         onClick={handleProcess}
                         disabled={isExtracting}
-                        className="flex items-center gap-2 px-8 py-4 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 transition-all shadow-lg hover:shadow-indigo-200 disabled:opacity-70 disabled:cursor-not-allowed"
+                        className="flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-ios-accent to-blue-600 text-white rounded-2xl font-bold hover:shadow-lg hover:shadow-blue-500/30 transition-all hover:-translate-y-1 disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:transform-none"
                     >
                         {isExtracting ? (
                             <>
-                                <Loader2 className="w-5 h-5 animate-spin" />
+                                <Loader2 className="w-6 h-6 animate-spin" />
                                 {t('upload.extracting')}
                             </>
                         ) : (
                             <>
-                                {t('upload.process')} <ArrowRight className="w-5 h-5" />
+                                {t('upload.process')} <ArrowRight className="w-6 h-6" />
                             </>
                         )}
                     </button>
