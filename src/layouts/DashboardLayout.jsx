@@ -19,8 +19,8 @@ export default function DashboardLayout() {
             <main className="min-h-screen relative">
                 {/* Background Elements */}
                 <div className="fixed inset-0 pointer-events-none overflow-hidden">
-                    <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[120px] animate-pulse-glow" />
-                    <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-neon-blue/10 rounded-full blur-[100px] animate-pulse-glow" style={{ animationDelay: '1s' }} />
+                    <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-neon-purple/10 rounded-full blur-[120px] md:animate-pulse-glow" />
+                    <div className="absolute bottom-[-20%] left-[-10%] w-[500px] h-[500px] bg-neon-blue/10 rounded-full blur-[100px] md:animate-pulse-glow" style={{ animationDelay: '1s' }} />
                 </div>
 
                 {/* Header for Mobile/Tablet (and Desktop controls) */}
