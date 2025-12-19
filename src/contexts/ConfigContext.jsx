@@ -8,7 +8,7 @@ export function useConfig() {
 
 export function ConfigProvider({ children }) {
     const [geminiApiKey, setGeminiApiKey] = useState(() => {
-        return localStorage.getItem('geminiApiKey') || import.meta.env.VITE_GEMINI_API_KEY || '';
+        return import.meta.env.VITE_GEMINI_API_KEY || localStorage.getItem('geminiApiKey') || '';
     });
 
     const [bhashiniApiKey, setBhashiniApiKey] = useState(() => {

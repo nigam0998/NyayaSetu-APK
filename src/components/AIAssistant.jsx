@@ -59,7 +59,7 @@ export default function AIAssistant() {
         try {
             const genAI = new GoogleGenerativeAI(geminiApiKey);
             const model = genAI.getGenerativeModel({
-                model: "gemini-2.0-flash",
+                model: "gemini-flash-latest",
                 systemInstruction: "You are a helpful legal assistant. Your responses must be short, crisp, and easy to understand for a common user. Avoid long paragraphs and complex legal jargon. Use bullet points where possible."
             });
             const result = await model.generateContent(input);

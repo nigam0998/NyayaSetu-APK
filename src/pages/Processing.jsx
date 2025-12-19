@@ -3,9 +3,9 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { CheckCircle, Loader2, Brain, FileText, Shield, Sparkles } from 'lucide-react';
 import { cn } from '../lib/utils';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import { useConfig } from '../contexts/ConfigContext';
 
-// Initialize Gemini API
-const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
+
 
 const steps = [
     { id: 1, label: 'OCR Extraction & Text Cleaning', icon: FileText, duration: 1500 },
@@ -15,6 +15,7 @@ const steps = [
 ];
 
 export default function Processing() {
+    const { geminiApiKey } = useConfig();
     const [currentStep, setCurrentStep] = useState(0);
     const navigate = useNavigate();
     const location = useLocation();
@@ -27,7 +28,8 @@ export default function Processing() {
             // All steps done, now call Gemini API
             const generateAnalysis = async () => {
                 try {
-                    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+                    const genAI = new GoogleGenerativeAI(geminiApiKey);
+                    const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
                     const prompt = `You are a legal document analyzer. Analyze the following legal document and provide:
 1. A simplified explanation of 3 key clauses (identify the most important ones)
@@ -97,7 +99,7 @@ Please format your response as JSON with this structure:
         }, steps[currentStep].duration);
 
         return () => clearTimeout(timer);
-    }, [currentStep, navigate, documentText, fileName]);
+    }, [currentStep, navigate, documentText, fileName, geminiApiKey]);
 
     return (
         <div className="max-w-2xl mx-auto text-center pt-10 px-4">
