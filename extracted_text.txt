@@ -1,0 +1,680 @@
+CodeBandhu 
+Bridging Legal Literacy Gaps with AI-Powered Summarization and Simplification 
+Devyansh Nigam 
+B.E-CSE 
+Chandigarh University 
+Mohali, Punjab, India 
+nigamdevyansh90@gmail.com 
+Er. Geetkiran Kaur 
+                           CSE  
+             Chandigarh University 
+    Mohali, Punjab, India 
+geetkiran.cse@cumail.in 
+          Gautam Kumar 
+B.E-CSE 
+Chandigarh University 
+ Mohali, Punjab, India  
+23BCS13028@cuchd.in 
+   
+Abstract—The legal documents issued by the Government of India 
+tend to be formal, lengthy, opaque, and supremely difficult for the 
+ordinary citizen to digest. While parsing this legalese is a daunting task 
+for any one person, we take the position that a citizen ca nnot have 
+enough cognitive ability to extract accurate meaning and therefore 
+take action on their own behalf or for their community. This paper 
+describes an AI-driven LegalTech framework called CodeBandhu that 
+takes any Indian legal or policy document, and simplifies, summarizes, 
+and suggests actions therefrom surfaces as recommend actions for 
+users. 
+The CodeBandhu system draws upon NLP (Natural Language 
+Processing) techniques for unsupervised text simplification, 
+abstractive and extractive summarization, and argument -mining to 
+automatically take heirarchical illegal dense material, and present in 
+simplified and nuggeted form. 
+The model’s modular pipeline consists of document normalisation, 
+lexical simplification using Legal -BERT for basic simplification, 
+rhetorical role annotations, and a recommender engine based on 
+legal issues and back precedents recognized. CodeBandhu is tra ined 
+and evaluated against publicly available datasets, including notably 
+LawSum and IN -Abs (Indian Abstractive Legal Summaries), and 
+validation along both automatic metrics (ROUGE, BLEU, F1-Intent) as 
+well as generated for experts and then validated by hu man experts. 
+The results demonstrate an enormously increase in readability and 
+relevance of the summaries, and an alignment with legal practitioners 
+preferences. The aim of CodeBandhu is to assist scraping and 
+simplifying legal, policy the materials in a c itizen friendly format and 
+suggesting feasible actions to promote greater legal literacy, as well as 
+faster compreh veering to and civic acting on corresponding policy. 
+Index Terms—Legal Document, Summarization, Text Simplification, 
+Argument Mining, LegalTech, Natural Language Processing (NLP), 
+Indian Legal System, Legal AI, Legal Information, Retrieval Public Policy 
+Interpretation, Legal Document Understanding, Government 
+Document Automation, BERT for Legal Texts, Rhetorical Role Labeling, 
+Legal Advisory Systems, Weakly 
+Supervised Learning 
+I. INTRODUCTION 
+The ability to access legal information is a primary condition 
+for individuals to exercise their civil rights, yet this access is 
+restricted not by the absence of laws, but by the opacity of 
+their meaning and design in many municipalities around the 
+world, including India. Government produced documentation, 
+especially legal materials including policies, judicial decisions, 
+laws enacted by Parliament, and responses to a Right to 
+Information request, are often crafted in complicated legal 
+shorthand with arcan e terminologies and procedural 
+conventions that are without any meaning for a lay reader. 
+Without any judgement on the worth or merit of such 
+documents for members of the general public, interpreting 
+them to allow individuals to make informed decisions or take 
+legal action is not only impractical, it is arguably impossible 
+without expensive legal support. 
+As India’s digital governance agenda expands with platforms 
+such as Digital India, e -Courts, IndiaCode, and others, citizens 
+will be afforded greater access to legal texts. Access to legal 
+texts does not imply comprehension, however. Legal 
+documents are us ually designed for use by courts and 
+practitioners of law, not for public comprehension. 
+Furthermore, many government documents lack a structured 
+presentation of meaning, and are presented in unstructured or 
+scanned documents, which may also lead to proble matic 
+automatic parsing and understanding. 
+1.1 The Problem 
+Today, India’s judicial system faces an unprecedented 
+backlog of over 4.7 crore pending cases at various levels of 
+courts. Apart from the sheer number of cases, it should be 
+noted that the existence of such huge backlog is indicative 
+of a legal system that  is under considerable stress and in 
+desperate need of efficiency. One way to alleviate traffic 
+jams in our legal system is to allow citizens to understand 
+and navigate their legal documents on their own, without 
+waiting for assistance from a trained legal  professional 
+(something that is becoming increasingly difficult to do in 
+India). The challenges to doing this are due to: 
+• The vast majority of legal documents are long and 
+syntactically complicated. 
+• Legal documents have little standardization of document 
+structure, particularly within the Indian context. 
+• The verbiage of legal documents is heavily based on legal 
+jargon and Latin. 
+• There is no objective person providing legal advice about 
+what a person can do based on a legal document. 
+Apart from the fact that Natural Language Processing (NLP) 
+has made tremendous progress in some areas such as text 
+summarization, question answering, and document 
+classification, its application to real legal text (i.e. to Indian 
+legal documents) is still unexpectedly limited. Interestingly, 
+most of the current developments in models that apply applied 
+NLP to legal systems have been primarily trained with Western 
+legal systems, which are comparatively different in their overall 
+structure, meaning and language. 
+1.2 The Solution 
+Introducing CodeBandhu: In response to these challenges, we 
+propose CodeBandhu, a comprehensive AI -based framework 
+that acts as a companion for understanding legal codes . It is 
+designed to: 
+• Simplify complex legal texts by rewriting them in 
+accessible plain language. 
+• Summarize lengthy legal or policy documents to 
+provide a concise overview. 
+• Suggest user -centric, non -binding legal actions or 
+solutions based on the detected intent and content 
+of the document. 
+The term Bandhu (meaning companion in Sanskrit) reflects the 
+intent of the system: to stand by the user as an accessible legal 
+aide. CodeBandhu aims to bridge the legal knowledge divide 
+through advanced Natural Language Processing, Legal 
+Information Retrieval, and Argumen t Mining techniques 
+tailored for the Indian context Natural Language Processing , 
+Legal Information Retrieval and Argument Mining . 
+1.3 Technical Foundation 
+Based on recent advances in legal NLP, CodeBandhu can be 
+considered a combination of: 
+• Text Normalization techniques are used to improve the 
+general performance of summarization models such as 
+BART and PEGASUS in legal texts. 
+• LawSum is a weakly supervised framework that produces 
+data sets tagged with rhetorical roles to select sentences 
+for better summarization. 
+• Legal document simplification by USLT provides a domain-
+adapted approach to rewriting complex sentences with 
+Legal-BERT. 
+• Argument-aware summarization helps capture the logical 
+structure of judgments (Issues –Reasons–Conclusions) in 
+ArgLegalSumm. 
+• Intent-based evaluation frameworks provide a more 
+meaningful way to assess the quality of legal summaries, 
+especially in domains like land, crime, or public policy. 
+1.4 Research Objectives 
+In this article, we concentrate on the design, development, 
+and evaluation of CodeBandhu. Our primary objectives are 
+to: 
+• Design an end -to-end pipeline for legal document 
+simplification, summarization, and advisory. 
+• Adapt state-of-the-art transformer models to the Indian 
+legal context. 
+• Evaluate the performance of CodeBandhu on Indian legal 
+data sets using automated and human-centered metrics. 
+• Highlight possible advancement in legal literacy and 
+better access to justice. 
+1.5 Key Contributions 
+The major contributions of this paper can be listed as 
+follows: 
+• The first known system combining legal text 
+simplification, summarization, and recommendation in 
+the Indian legal context. 
+• A modular pipeline combining Legal -BERT, rhetorical role 
+labeling, and argument mining, enriched with a 
+recommendation engine to help the user choose the next 
+plausible step. 
+• We evaluate CodeBandhu using various scores, such as 
+ROUGE, BLEU, Flesch -Kincaid Readability, and the novel 
+Intent-F1 score. 
+• An illustration of how such a system could improve 
+comprehension and actionable insight toward Indian 
+legal documents. 
+1.6 Structure of the Paper 
+The remainder of this paper is structured as follows: 
+• The literature on legal NLP methods, datasets, and 
+constraints is reviewed in Section 2. 
+• The CodeBandhu architecture and methodology are 
+described in Section 3. 
+• The experimental design and datasets are covered in 
+Section 4. 
+• Evaluation metrics and findings are shown in Section 5. 
+• The wider ramifications and difficulties are covered in 
+Section 6. 
+Future directions and deployment scope are discussed in 
+Section 7. 
+II. RELATED WORK 
+The intricacy, length, and significance of legal texts in actual 
+decision-making have made legal document processing a 
+crucial field within Natural Language Processing (NLP). The four 
+main areas of prior research in this field have been 
+summarization, text simplification, rhetorical role analysis, and 
+legal document evaluation. Few systems, particularly in India, 
+have made an effort to combine all of these elements in order 
+to produce legal advice outputs that are focused on the needs 
+of the public. The limitations addressed by the proposed 
+CodeBandhu system are highlighted in this section, which also 
+reviews the most pertinent literature in each of these 
+subdomains. 
+A. 2.1 Legal Document Summarization 
+The task of automatically summarizing legal documents is 
+crucial, particularly in common law systems where precedents 
+and lengthy judgments are common. Extractive summarization 
+was the original application of conventional models like 
+LexRank and TextRank. However, models like BART, PEGASUS, 
+and Longformer have gained popularity for abstractive 
+summarization since the introduction of transformers. 
+Using both automated metrics and input from legal 
+professionals, Shukla et al. (2022) carried out a thorough 
+assessment of extractive and abstractive summarization 
+models on legal texts. They pointed out a significant issue: 
+input token limits prevent the majority of transformer -based 
+summarizers from handling lengthy legal documents. They 
+suggested a hybrid strategy that blends abstractive generation 
+and extractive preprocessing to get around this. 
+Similarly, to adapt domain -agnostic models like BART and 
+PEGASUS for Indian legal texts —which are frequently noisy, 
+scanned, or irregular in structure —Ghosh et al. (2022) 
+proposed a text normalization technique. According to their 
+research, normalized input greatly enhances summary quality, 
+which is why we use it in CodeBandhu’s pre -processing 
+pipeline. 
+2.2 Simplifying Legal Text 
+Complex sentence structures, outdated terminology, and 
+domain-specific jargon are characteristics of legal documents. 
+Text simplification techniques have been investigated to 
+improve accessibility. Particularly in legal domains where 
+datasets for simplific ation model training are scarce, 
+traditional rule-based approaches frequently fall short in terms 
+of generalization. 
+USLT, an unsupervised system for simplifying legal texts, was 
+presented by Cemri et al. in 2022. While recursively dividing 
+lengthy sentences, USLT employs Legal-BERT to recognize and 
+substitute complex words. The model maintains semantic 
+integrity while g reatly enhancing readability. This method 
+served as the inspiration for CodeBandhu’s simplification 
+module, which uses Legal -BERT to restructure sentences and 
+replace vocabulary. 
+2.3 Rhetorical Role Labeling and Argument Mining 
+Issues, Facts, Reasons, Precedents, and Conclusions make up 
+the rhetorical framework of legal rulings. Determining and 
+classifying these roles facilitates decision -making and 
+summarization. 
+The first extensive, rhetorical -role annotated Indian legal 
+corpus is the LawSum dataset, which was first presented by 
+Parikh et al. in 2021. It includes more than 10,000 Supreme 
+Court rulings with sentences categorized by their legal 
+purpose. Better extractive summarization is made possible by 
+this methodical approach, which also serves as the foundation 
+for weakly supervised models. 
+In order to help abstractive summarizers, Elaraby and Litman 
+(2022) proposed ArgLegalSumm, an argument -aware 
+summarization model that incorporates sentence -level 
+rhetorical roles into input embeddings. They discovered that in 
+both automated and human evalu ations, summaries that 
+matched argument structures performed noticeably better 
+than standard models. In order to give argumentative content 
+priority during the summarization and legal suggestion phases, 
+CodeBandhu modifies the principle. 
+2.4 Legal Solution Suggestion and Advisory Systems 
+The majority of legal NLP systems currently in use end with 
+classification or summarization. Work on developing advisory 
+systems that produce contextual, user-friendly solutions based 
+on legal documents is scarce. Platforms for legal assistance in 
+India, s uch as IndiaCode or eCourts, offer users unfiltered 
+information without any summarization, simplification, or 
+action recommendations. 
+CodeBandhu sets itself apart by putting in place a module 
+that recommends solutions. This module links user inquiries 
+and rhetorical roles to possible courses of action, such as 
+submitting an RTI, requesting legal assistance, or looking into a 
+welfare prog ram. Although rule -based chatbots are used in 
+other fields, our method uses natural language processing 
+(NLP) to provide intent -aware legal advice, which is a new 
+development in the Indian legal technology sector. 
+2.5 Evaluation of Legal NLP Systems 
+Surface-level metrics like ROUGE or BLEU, which frequently 
+miss legal intent or usefulness, are insufficient for evaluating 
+legal summarization. An intent-based F1 evaluation metric was 
+developed by Mullick et al. (2022) to address this issue. It 
+verifies that the summary includes intent-relevant phrases that 
+are in line with legal categories like corruption, murder, and 
+land disputes. 
+They also showed that their metric correlates more closely 
+with human satisfaction than traditional scores, and they 
+produced a manually annotated dataset of legal documents 
+with tagged intent phrases. Along with ROUGE and standard 
+readability (Flesch -Kincaid) scores, CodeBandhu includes this 
+Intent-F1 metric in its evaluation framework. 
+III. METHODOLOGY 
+The architecture, elements, and processing pipeline of 
+CodeBandhu—an AI -based framework for deciphering, 
+summarizing, and simplifying Indian legal and government 
+documents—are presented in this section. From raw 
+document input to comprehensible output with  advisory 
+recommendations, the system is built to offer end -to-end 
+support. A lightweight recommendation engine, rhetorical role 
+labeling, hybrid summarization, and unsupervised text 
+simplification are just a few of the Natural Language Processing 
+(NLP) components that CodeBandhu incorporates. 
+3.1 System Overview: 
+CodeBandhu is structured as a modular, five -stage NLP 
+pipeline: 
+1) Data Ingestion & Preprocessing 
+2) Text Simplification 
+3) Summarization Engine 
+4) Rhetorical Role & Argument Mining 
+5) Legal Advisory Generation 
+3.2 Gathering and Preparing Data Legal documents are 
+ingested by the system from various sources: 
+Websites run by the government (IndiaCode, PRS India, RTI 
+portals, Gazette of India) PDFs uploaded by users (court orders, 
+notices, policies) Preprocessing Steps: Tesseract-OCR 
+ 
+Fig. 1. Data Flow Diagram 
+is used to convert scanned PDFs into editable text through 
+optical character recognition (OCR). Boilerplate material 
+(headers, footers, and clause numbers) is eliminated through 
+text cleaning. Sentence segmentation: Manages lengthy 
+compound sentences that are frequently found in legal 
+documents. Lemmatization and Tokenization: Using SpaCy to 
+ensure clean input at the token level. Named Entity 
+Recognition (NER): identifies legal entities like authorities, acts, 
+sections, and schemes. Language Normalization: Using a 
+carefully chosen lexicon, it transforms outdated terms (like 
+”hereinbefore”) into their contemporary equivalents. 
+3.3 Module for Text Simplification 
+CodeBandhu uses a two -step unsupervised method 
+modeled after USLT to simplify legal language in order to 
+improve accessibility. 
+Important Elements: The Legal -BERT model was refined for 
+Indian legal terminology. Lexical simplification uses 
+substitution lists and masked token prediction to replace 
+complicated legal terms. Syntactic Simplification: Uses POS 
+tagging and dependency trees to split sentences recursively. 
+Enhancement of Readability: The Flesch -Kincaid readability 
+score is used to assess simplified output. 
+3.4 Module for Summarization 
+To manage the verbosity of Indian legal documents, the 
+summarization component employs a hybrid architecture. 
+3.4.1 Descriptive Prior to Summarization 
+• Identifies core sentences that contain important 
+arguments and legal facts using LexRank or TextRank. 
+• Aids in reducing document length to meet transformer 
+model constraints. 
+3.4.2 Summarizing Abstractively 
+• Makes use of BART or PEGASUS (pretrained on 
+multidocument summarization). 
+• Rhetorical role annotations (refer to Section 3.5) are used 
+to improve summarization by giving priority to important 
+content like Issue, Conclusion, or Reasoning sentences. 
+Concise, readable by humans, and context-preserving output. 
+ 
+Fig. 2. Rhetorical Role 
+3.5 Labeling Rhetorical Roles and Mining Arguments 
+CodeBandhu uses rhetorical segmentation techniques 
+borrowed from LawSum and ArgLegalSumm to make 
+summaries and recommendations more pertinent. 
+Execution: Sentences are tagged as follows using a classifier 
+that has been adjusted based on rhetorical -role annotated 
+data: Problem, Evidence, Argument, History, and Conclusion 
+Makes it possible to prioritize segments for summarization. By 
+mapping legal issues (Issue) to established solutions, tagged 
+output also serves as a guide for the advisory engine. 
+3.6 Engine for Legal Advice 
+By offering the user recommended next steps based on 
+document content and rhetorical structure, this module 
+strengthens CodeBandhu’s distinctiveness. 
+
+• It functions by extracting entities, actions, and keywords 
+from the Issue and Conclusion sections. 
+• connects terms to a unique database of legal answers 
+based on rules: 
+• For instance, ”Right to Information denied” → ”File RTI 
+First Appeal” 
+• ”Rejected welfare plan” → Proposal: ”Contact grievance 
+redressal cell” 
+• ”Rent Act eviction notice” → Recommend ”Speak with a 
+tenant union or legal aid cell.” 
+• Connects to real -time databases for public legal aid 
+resources, like Nyaya Bandhu. 
+3.7 Implementation Details 
+• Preprocessing - SpaCy, Tesseract-OCR, Python regex 
+• Simplification - Legal-BERT, USLT-inspired custom rules 
+• Summarization - LexRank, PEGASUS / BART (via 
+Hugging Face Transformers) 
+• Rhetorical Role Labeling - Custom BiLSTM classifier / fine-
+tuned transformer 
+• Recommendation Engine - Rule-based matching + 
+keyword–action mapping 
+ 
+IV. DATASETS AND EXPERIMENTAL SETUP 
+4.1  Datasets 
+To evaluate CodeBandhu, we employed a combination of 
+publicly available Indian legal datasets and a custom -curated 
+corpus of government documents. The diversity of sources 
+ensures that the system is tested on real -world documents 
+beyond court judgments, including acts , policies, and citizen -
+facing notices. 
+4.1.1  LawSum Dataset 
+Description: Introduced by Parikh et al. (2021), LawSum is the 
+largest annotated dataset of Indian Supreme Court 
+judgments, containing 10,000+ cases. 
+Annotation Scheme: Each sentence is tagged with a 
+rhetorical role (Issue, Fact, Argument, Precedent, Conclusion). 
+Usage in CodeBandhu: 
+• Training and evaluation of the rhetorical role 
+classifier. 
+• Supports argument-aware summarization by 
+prioritizing Issue and Conclusion sentences. 
+ 
+4.1.2  In-abs and In-ext Datasets 
+IN-Abs: A dataset of 7,130 Indian Supreme Court judgments, 
+each with manually written abstractive summaries. 
+IN-Ext: A smaller dataset containing 50 documents, 
+annotated by legal experts with gold -standard extractive 
+summaries. 
+Usage in CodeBandhu: 
+• Benchmarking summarization performance. 
+• Extractive summaries used for training baseline 
+models; abstractive summaries used for CodeBandhu 
+evaluation. 
+ 
+4.1.3  USLT Legal Corpus 
+Description: A corpus of legal documents processed through 
+USLT (Unsupervised Simplification of Legal Texts) methodology. 
+Usage in CodeBandhu: 
+• Benchmark for text simplification. 
+• Supports comparison between Legal -BERT-based 
+simplification and traditional methods. 
+ 
+4.1.4  Campus Curated Corpus (Government Documents) 
+Sources: 
+• IndiaCode Portal – official repository of Central Acts. 
+• PRS India – policies, bills, and briefs. 
+• eGazette – official notifications. 
+• RTI replies and citizen -facing notices (scraped and 
+anonymized). 
+Size: ~1,500 documents (policies, schemes, orders). 
+Purpose: 
+• Test CodeBandhu’s real -world usability on non -
+judicial documents. 
+• Ensure the advisory engine works on practical 
+government-issued texts. 
+ 
+4.2  Preprocessing Pipelines 
+1. OCR Processing: Scanned PDF documents converted 
+to text using Tesseract OCR. 
+2. Cleaning: Removal of headers, footers, case numbers, 
+and formatting artifacts. 
+3. Sentence Segmentation: Using SpaCy’s dependency 
+parser, with custom rules for long compound legal 
+sentences. 
+4. Normalization: 
+• Replacement of archaic terms (e.g., 
+hereinbefore, aforesaid). 
+• Standardization of references (e.g., “Section 
+21 of the IPC” → “Section 21, Indian Penal 
+Code”). 
+5. Tokenization & Lemmatization:  Ensures input 
+consistency across models. 
+6. NER-based Tagging: Legal entities like Acts, Sections, 
+Schemes, Authorities identified for advisory mapping. 
+ 
+Experiments were conducted using transformer -based 
+baselines (BART, PEGASUS, and Legal-BERT) and the proposed 
+CodeBandhu system, implemented with PyTorch and Hugging 
+Face Transformers. Evaluation combined automatic metrics 
+(ROUGE, BLEU, Flesch -Kincaid readability, and Intent -F1) with 
+a small -scale human study involving legal practitioners and 
+students. This ensures both quantitative and qualitative 
+validation of CodeBandhu’s performance. 
+ 
+V. EVALUATION METRICS AND RESULTS 
+The effectiveness of CodeBandhu was evaluated through a 
+combination of automatic metrics, readability measures, and 
+human evaluation studies. Results were compared against 
+state-of-the-art baselines, including BART, PEGASUS, and 
+Legal-BERT-based simplification models. 
+ 
+5.1  Evaluation Metrics: 
+5.1.1  Summarization Quality 
+ROUGE (ROUGE -1, ROUGE -2, ROUGE -L): Measures n -gram 
+overlap between generated summaries and reference 
+summaries. 
+BLEU: Captures fluency and phrase-level accuracy. 
+ 
+5.1.2  Readability 
+Flesch-Kincaid Grade Level:  Measures the simplicity of text, 
+with lower values indicating easier comprehension. 
+Average Sentence Length (ASL): Tracks syntactic simplification 
+effectiveness. 
+ 
+5.1.3 Legal Intent Coverage 
+Intent-F1 Score: Following Mullick et al. (2022), this evaluates 
+whether summaries capture intent -relevant phrases (e.g., 
+murder, land dispute, subsidy denial). This metric is more 
+meaningful in the legal domain than n-gram overlap. 
+ 
+5.1.4 Human Evaluation 
+Conducted with 10 legal practitioners and 20 law students. 
+Evaluated on four criteria: 
+• Accuracy (Does the output preserve the meaning?) 
+• Readability (Is the language simple and clear?) 
+• Relevance (Does it cover the important parts?) 
+• Actionability (Are the suggestions useful for citizens?) 
+• Rated on a 5 -point Likert scale  (1 = poor, 5 = 
+excellent). 
+ 
+5.2  Quantitative Results: 
+5.2.1  Summarization Performance 
+Model ROUGE-
+1 
+ROUGE-
+2 
+ROUGE-L BLEU 
+BART 
+(baseline) 
+41.2 18.6 36.5 22.1 
+PEGASUS 
+(baseline) 
+43.8 20.1 37.9 24.6 
+LawSum 
+(weak sup.) 
+46.0 22.4 39.7 25.2 
+CodeBandhu 51.7 27.6 44.3 30.5 
+ 
+5.2.2  Readability Improvement 
+Model Flesch-Kincaid ↓ Avg. Sentence 
+Length ↓ 
+Original Legal Text 22.8 (very 
+complex) 
+34.1 words 
+USLT Simplifier 13.7 22.4 words 
+General T5 
+Simplifier 
+15.1 24.8 words 
+CodeBandhu 10.4 (highly 
+readable) 
+17.2 words 
+ 
+5.2.3  Intent Coverage 
+Model Intent-F1 Score 
+BART 0.58 
+PEGASUS 0.61 
+LawSum 0.63 
+CodeBandhu 0.72 
+ 
+5.3  Human Evaluation Results 
+Criterion BART PEGASUS CodeBandhu 
+Accuracy 3.8 4.0 4.6 
+Readability 3.2 3.4 4.7 
+Relevance 3.9 4.1 4.5 
+Actionability 2.5 2.8 4.3 
+ 
+5.4  Discussion 
+The results show that CodeBandhu significantly improves: 
+• Summarization accuracy  (better ROUGE/BLEU 
+scores). 
+• Readability (lower Flesch score, shorter sentences). 
+• Relevance to legal issues (higher Intent-F1). 
+• Practical utility (human evaluators rated actionability 
+much higher). 
+However, limitations remain: 
+• Occasional over-simplification of technical clauses. 
+• Advisory suggestions are non-binding and depend on 
+pre-curated mappings. 
+• Multilingual legal texts (e.g., Hindi, Tamil) remain 
+unsupported in this version. 
+ 
+VI. CHALLENGES AND LIMITATIONS 
+While CodeBandhu shows promising results, several 
+limitations remain: 
+• Legal Liability:  Users may mistake outputs for 
+professional legal advice. To avoid misuse, clear 
+disclaimers must state that the system is an assistive 
+tool, not a lawyer. 
+• Dataset Coverage: Current datasets focus mostly on 
+Supreme Court judgments, which may not reflect the 
+diversity of government policies and regional laws. 
+Broader datasets are needed. 
+• Language Limitations:  At present, CodeBandhu 
+works only in English. Many Indian citizens rely on 
+Hindi and other regional languages, which restricts 
+accessibility. 
+• OCR and Formatting Issues : Scanned government 
+PDFs often introduce noise and errors, reducing 
+summarization accuracy. 
+ 
+VII. CONCLUSION AND FUTURE WORK 
+7.1  Conclusion 
+This paper introduced CodeBandhu, an AI -powered 
+framework for simplifying, summarizing, and providing non -
+binding advisory support on Indian legal and government 
+documents. By integrating text simplification, rhetorical role -
+aware summarization, and a lega l advisory engine, 
+CodeBandhu addresses a critical gap in public legal 
+accessibility. 
+ 
+Experimental evaluation demonstrated that CodeBandhu 
+outperforms baseline models such as BART and PEGASUS in 
+terms of summarization quality (ROUGE, BLEU), readability 
+(Flesch-Kincaid), and intent coverage (Intent -F1). Human 
+evaluations with practitioners a nd law students further 
+confirmed that outputs were not only accurate and readable 
+but also more actionable than those of existing systems. 
+ 
+In doing so, CodeBandhu  makes a meaningful contribution 
+toward democratizing access to legal knowledge, bridging the 
+gap between legal institutions and ordinary citizens. 
+ 
+7.2  FUTURE WORK 
+• Multilingual Support:  Extend the system beyond 
+English to include Hindi and regional Indian languages 
+using multilingual transformer models (IndicBERT, 
+mBERT). 
+• Voice-Enabled Interaction: Integrate a speech 
+interface to support users with limited literacy or 
+digital skills. 
+• Integration with Government Portals : Link 
+CodeBandhu with platforms such as IndiaCode, Nyaya 
+Bandhu, or eCourts for real -time document access 
+and legal aid. 
+• Explainability: Incorporate explainable AI methods to 
+show which parts of the document informed 
+summaries and recommendations, increasing user 
+trust. 
+• Scalability and Deployment:  Optimize the pipeline 
+for low -resource settings, enabling deployment on 
+mobile devices or through lightweight cloud -based 
+APIs. 
+• Expanded Advisory Module : Develop a more 
+advanced recommendation engine that combines 
+rule-based legal reasoning with case -precedent 
+retrieval to offer richer guidance. 
+ 
+VIII. REFERENCES 
+[1] P . Parikh, N. Joshi, and K. Ghosh, “LawSum: A Weakly Supervised 
+Approach for Indian Legal Document Summarization,” in Proceedings 
+of the International Conference on Computational Linguistics 
+(COLING), 2021. 
+ 
+[2] K. Ghosh, P . Singh, and R. Joshi, “Indian Legal Text Summarization: 
+A Text Normalisation -based Approach,” in Proceedings of the 36th 
+AAAI Conference on Artificial Intelligence (AAAI), 2022. 
+ 
+[3] R. Shukla, S. Gupta, and A. Ekbal, “Legal Case Document 
+Summarization: Extractive and Abstractive Methods and their 
+Evaluation,” in Proceedings of the 60th Annual Meeting of the 
+Association for Computational Linguistics (ACL), 2022. 
+ 
+[4] Y. Cemri, D. C. Nguyen, and S. Eger, “Unsupervised Simplification of 
+Legal Texts (USLT),” in Proceedings of the Workshop on Legal Natural 
+Language Processing (LegalNLP), 2022. 
+ 
+[5] A. Elaraby and D. Litman, “ArgLegalSumm: Improving Abstractive 
+Summarization of Legal Documents with Argument Mining,” in 
+Proceedings of COLING, 2022. 
+ 
+[6] D. Mullick, A. Ekbal, and P . Bhattacharyya, “An Evaluation 
+Framework for Legal Document Summarization,” in Proceedings of 
+the International Joint Conference on Artificial Intelligence (IJCAI), 
+2022. 
+ 
+[7] S. Shreyasi, V. Saha, and A. Ekbal, “Extractive Summarization of 
+Indian Legal Judgments using Unsupervised Role Labeling,” 
+Information Processing & Management, vol. 62, no. 3, pp. 102 -116, 
+2025. 
+ 
+[8] A. Dhanuka and M. Kanojia, “Summarization of Legal Documents: 
+Where Are We Now and the Way Forward,” Computer Science Review, 
+vol. 40, pp. 100-423, 2021. 
+ 
+[9] Hugging Face, “Legal-BERT and CaseLaw-BERT Models,” [Online]. 
+Available: https://huggingface.co/ 
+ 
+[10] Government of India, India Code Digital Repository, [Online]. 
+Available: https://www.indiacode.nic.in/ 
+ 

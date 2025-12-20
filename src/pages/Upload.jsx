@@ -60,33 +60,46 @@ export default function Upload() {
                 fullText += pageText + '\n';
             }
 
-            if (!fullText.trim()) {
-                alert("This PDF appears to be empty or contains only images. Please try a text-based PDF.");
-                return null;
-            }
-
             return fullText;
         } catch (error) {
             console.error("Error extracting text:", error);
-            alert(`Failed to read PDF: ${error.message}. The file may be corrupted, encrypted, or password-protected.`);
-            return null;
+            // Don't alert here, return empty string so we can fall back to image processing
+            return "";
         } finally {
             setIsExtracting(false);
         }
+    };
+
+    const readFileAsBase64 = (file) => {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
     };
 
     const handleProcess = async () => {
         if (!file) return;
 
         const text = await extractTextFromPDF(file);
-        if (text) {
-            navigate('/dashboard/processing', {
-                state: {
-                    documentText: text,
-                    fileName: file.name
-                }
-            });
+
+        // Read file as base64 for fallback
+        let base64 = null;
+        try {
+            base64 = await readFileAsBase64(file);
+        } catch (e) {
+            console.error("Error reading file as base64", e);
         }
+
+        navigate('/dashboard/processing', {
+            state: {
+                documentText: text,
+                fileData: base64,
+                mimeType: file.type,
+                fileName: file.name
+            }
+        });
     };
 
     return (
