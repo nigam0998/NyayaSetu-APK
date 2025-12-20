@@ -21,8 +21,6 @@ export default function Processing() {
     const location = useLocation();
 
     const documentText = location.state?.documentText || '';
-    const fileData = location.state?.fileData;
-    const mimeType = location.state?.mimeType || 'application/pdf';
     const fileName = location.state?.fileName || 'Document';
 
     useEffect(() => {
@@ -31,13 +29,15 @@ export default function Processing() {
             const generateAnalysis = async () => {
                 try {
                     const genAI = new GoogleGenerativeAI(geminiApiKey);
-                    // Use model that supports multimodal (flash usually does)
-                    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+                    const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
 
-                    let prompt = `You are a legal document analyzer. Analyze the following legal document and provide:
+                    const prompt = `You are a legal document analyzer. Analyze the following legal document and provide:
 1. A simplified explanation of 3 key clauses (identify the most important ones)
 2. A summary with key facts and critical obligations
 3. 3 actionable legal advisory suggestions
+
+Document Text:
+${documentText}
 
 Please format your response as JSON with this structure:
 {
@@ -56,27 +56,7 @@ Please format your response as JSON with this structure:
   ]
 }`;
 
-                    let contentParts = [];
-
-                    if (documentText && documentText.trim().length > 50) {
-                        prompt += `\n\nDocument Text:\n${documentText}`;
-                        contentParts = [prompt];
-                    } else if (fileData) {
-                        prompt += `\n\nAnalyze the attached document image/file.`;
-                        contentParts = [
-                            prompt,
-                            {
-                                inlineData: {
-                                    data: fileData,
-                                    mimeType: mimeType
-                                }
-                            }
-                        ];
-                    } else {
-                        throw new Error("No text or file data provided for analysis");
-                    }
-
-                    const result = await model.generateContent(contentParts);
+                    const result = await model.generateContent(prompt);
                     const response = await result.response;
                     const analysisText = response.text();
 
