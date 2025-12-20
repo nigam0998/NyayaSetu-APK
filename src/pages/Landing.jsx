@@ -136,9 +136,9 @@ export default function Landing() {
 
                     <div className="grid md:grid-cols-3 gap-8">
                         {[
-                            { name: "Rahul S.", role: "Small Business Owner", text: "CodeBandhu saved me thousands in legal fees. I understood my rental agreement in minutes!" },
+                            { name: "Rahul S.", role: "Small Business Owner", text: "NyayaSetu saved me thousands in legal fees. I understood my rental agreement in minutes!" },
                             { name: "Priya M.", role: "Law Student", text: "An incredible tool for quick case summaries. It helps me prepare for my internships so much faster." },
-                            { name: "Amit K.", role: "Freelancer", text: "I was confused by a client contract. CodeBandhu highlighted the risky clauses instantly. Highly recommended!" }
+                            { name: "Amit K.", role: "Freelancer", text: "I was confused by a client contract. NyayaSetu highlighted the risky clauses instantly. Highly recommended!" }
                         ].map((testimonial, i) => (
                             <div key={i} className="bg-glass-surface p-8 rounded-3xl border border-glass-border hover:bg-white/5 transition-colors">
                                 <div className="flex gap-1 mb-4">
@@ -177,7 +177,7 @@ export default function Landing() {
                                 {t('landing.about.desc1')}
                             </p>
                             <p className="text-lg text-slate-400 mb-8 leading-relaxed">
-                                <span className="font-semibold text-white">CodeBandhu</span> {t('landing.about.desc2')}
+                                <span className="font-semibold text-white">NyayaSetu</span> {t('landing.about.desc2')}
                             </p>
                             <div className="flex gap-12">
                                 <div>
@@ -273,7 +273,7 @@ export default function Landing() {
                                 <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center shadow-lg shadow-neon-blue/20">
                                     <Shield className="w-8 h-8 text-neon-blue" />
                                 </div>
-                                <span className="text-2xl font-bold text-white">CodeBandhu</span>
+                                <span className="text-2xl font-bold text-white">NyayaSetu</span>
                             </div>
                             <p className="max-w-xs text-sm leading-relaxed">
                                 {t('landing.footer.desc')}
@@ -296,7 +296,7 @@ export default function Landing() {
                         </div>
                     </div>
                     <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-                        <p>© 2025 CodeBandhu. {t('landing.footer.rights')}</p>
+                        <p>© 2025 NyayaSetu. {t('landing.footer.rights')}</p>
                         <p>{t('landing.footer.madeWith')}</p>
                     </div>
                 </div>

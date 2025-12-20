@@ -33,7 +33,7 @@ const translations = {
                 liveDemo: 'Live Demo',
             },
             features: {
-                title: 'Why Choose CodeBandhu?',
+                title: 'Why Choose NyayaSetu?',
                 subtitle: 'Built specifically for the Indian legal framework to help citizens, students, and professionals.',
                 simplification: {
                     title: 'Instant Simplification',
@@ -57,13 +57,13 @@ const translations = {
             },
             testimonials: {
                 title: 'Trusted by Thousands',
-                subtitle: 'See what our users are saying about CodeBandhu.',
+                subtitle: 'See what our users are saying about NyayaSetu.',
             },
             about: {
                 mission: 'Our Mission',
                 title: 'Bridging the Legal Gap',
                 desc1: 'In India, millions of citizens struggle to understand their legal rights due to complex language and lack of accessible resources.',
-                desc2: 'CodeBandhu is an AI-powered initiative designed to democratize legal access. We combine cutting-edge Natural Language Processing (NLP) with deep legal expertise to make justice accessible to everyone, from rural citizens to urban professionals.',
+                desc2: 'NyayaSetu is an AI-powered initiative designed to democratize legal access. We combine cutting-edge Natural Language Processing (NLP) with deep legal expertise to make justice accessible to everyone, from rural citizens to urban professionals.',
                 stats: { accuracy: 'Accuracy Rate', availability: 'Availability' },
                 citizens: { title: 'For Citizens', desc: 'Understand contracts, notices, and rights in simple language.' },
                 legalAid: { title: 'For Legal Aid', desc: 'Accelerate case processing and document review.' },
@@ -71,7 +71,7 @@ const translations = {
             },
             contact: {
                 title: 'Get in Touch',
-                subtitle: 'Have questions about CodeBandhu? Our team is here to help you navigate the platform.',
+                subtitle: 'Have questions about NyayaSetu? Our team is here to help you navigate the platform.',
                 firstName: 'First Name',
                 lastName: 'Last Name',
                 email: 'Email Address',
@@ -153,7 +153,7 @@ const translations = {
         },
         login: {
             title: 'Welcome Back',
-            subtitle: 'Sign in to your CodeBandhu account',
+            subtitle: 'Sign in to your NyayaSetu account',
             email: 'Email Address',
             password: 'Password',
             rememberMe: 'Remember me',
@@ -166,7 +166,7 @@ const translations = {
         },
         signup: {
             title: 'Create Account',
-            subtitle: 'Join CodeBandhu today',
+            subtitle: 'Join NyayaSetu today',
             firstName: 'First Name',
             lastName: 'Last Name',
             email: 'Email Address',
@@ -245,7 +245,7 @@ const translations = {
                 liveDemo: 'लाइव डेमो',
             },
             features: {
-                title: 'कोडबंधु क्यों चुनें?',
+                title: 'न्यायसेतु क्यों चुनें?',
                 subtitle: 'नागरिकों, छात्रों और पेशेवरों की मदद के लिए भारतीय कानूनी ढांचे के लिए विशेष रूप से बनाया गया।',
                 simplification: {
                     title: 'तत्काल सरलीकरण',
@@ -269,13 +269,13 @@ const translations = {
             },
             testimonials: {
                 title: 'हजारों द्वारा विश्वसनीय',
-                subtitle: 'देखें कि हमारे उपयोगकर्ता कोडबंधु के बारे में क्या कह रहे हैं।',
+                subtitle: 'देखें कि हमारे उपयोगकर्ता न्यायसेतु के बारे में क्या कह रहे हैं।',
             },
             about: {
                 mission: 'हमारा मिशन',
                 title: 'कानूनी अंतर को पाटना',
                 desc1: 'भारत में, लाखों नागरिक जटिल भाषा और सुलभ संसाधनों की कमी के कारण अपने कानूनी अधिकारों को समझने के लिए संघर्ष करते हैं।',
-                desc2: 'कोडबंधु एक एआई-संचालित पहल है जिसे कानूनी पहुंच को लोकतांत्रिक बनाने के लिए डिज़ाइन किया गया है। हम न्याय को सभी के लिए सुलभ बनाने के लिए अत्याधुनिक प्राकृतिक भाषा प्रसंस्करण (एनएलपी) को गहरी कानूनी विशेषज्ञता के साथ जोड़ते हैं।',
+                desc2: 'न्यायसेतु एक एआई-संचालित पहल है जिसे कानूनी पहुंच को लोकतांत्रिक बनाने के लिए डिज़ाइन किया गया है। हम न्याय को सभी के लिए सुलभ बनाने के लिए अत्याधुनिक प्राकृतिक भाषा प्रसंस्करण (एनएलपी) को गहरी कानूनी विशेषज्ञता के साथ जोड़ते हैं।',
                 stats: { accuracy: 'सटीकता दर', availability: 'उपलब्धता' },
                 citizens: { title: 'नागरिकों के लिए', desc: 'सरल भाषा में अनुबंध, नोटिस और अधिकारों को समझें।' },
                 legalAid: { title: 'कानूनी सहायता के लिए', desc: 'मामले की प्रक्रिया और दस्तावेज़ समीक्षा में तेजी लाएं।' },
@@ -283,7 +283,7 @@ const translations = {
             },
             contact: {
                 title: 'संपर्क करें',
-                subtitle: 'कोडबंधु के बारे में प्रश्न हैं? हमारी टीम प्लेटफॉर्म को नेविगेट करने में आपकी मदद करने के लिए यहां है।',
+                subtitle: 'न्यायसेतु के बारे में प्रश्न हैं? हमारी टीम प्लेटफॉर्म को नेविगेट करने में आपकी मदद करने के लिए यहां है।',
                 firstName: 'पहला नाम',
                 lastName: 'अंतिम नाम',
                 email: 'ईमेल पता',
@@ -365,7 +365,7 @@ const translations = {
         },
         login: {
             title: 'वापसी पर स्वागत है',
-            subtitle: 'अपने कोडबंधु खाते में साइन इन करें',
+            subtitle: 'अपने न्यायसेतु खाते में साइन इन करें',
             email: 'ईमेल पता',
             password: 'पासवर्ड',
             rememberMe: 'मुझे याद रखें',
@@ -378,7 +378,7 @@ const translations = {
         },
         signup: {
             title: 'खाता बनाएं',
-            subtitle: 'आज ही कोडबंधु से जुड़ें',
+            subtitle: 'आज ही न्यायसेतु से जुड़ें',
             firstName: 'पहला नाम',
             lastName: 'अंतिम नाम',
             email: 'ईमेल पता',
@@ -457,7 +457,7 @@ const translations = {
                 liveDemo: 'ਲਾਈਵ ਡੈਮੋ',
             },
             features: {
-                title: 'ਕੋਡਬੰਧੂ ਕਿਉਂ ਚੁਣੋ?',
+                title: 'NyayaSetu ਕਿਉਂ ਚੁਣੋ?',
                 subtitle: 'ਭਾਰਤੀ ਕਾਨੂੰਨੀ ਢਾਂਚੇ ਲਈ ਨਾਗਰਿਕਾਂ, ਵਿਦਿਆਰਥੀਆਂ ਅਤੇ ਪੇਸ਼ੇਵਰਾਂ ਦੀ ਮਦਦ ਲਈ ਵਿਸ਼ੇਸ਼ ਤੌਰ ਤੇ ਬਣਾਇਆ ਗਿਆ।',
                 simplification: {
                     title: 'ਤੁਰੰਤ ਸਰਲਤਾ',
@@ -481,13 +481,13 @@ const translations = {
             },
             testimonials: {
                 title: 'ਹਜ਼ਾਰਾਂ ਦੁਆਰਾ ਭਰੋਸੇਯੋਗ',
-                subtitle: 'ਦੇਖੋ ਕਿ ਸਾਡੇ ਉਪਭੋਗਤਾ ਕੋਡਬੰਧੂ ਬਾਰੇ ਕੀ ਕਹਿ ਰਹੇ ਹਨ।',
+                subtitle: 'ਦੇਖੋ ਕਿ ਸਾਡੇ ਉਪਭੋਗਤਾ NyayaSetu ਬਾਰੇ ਕੀ ਕਹਿ ਰਹੇ ਹਨ।',
             },
             about: {
                 mission: 'ਸਾਡਾ ਮਿਸ਼ਨ',
                 title: 'ਕਾਨੂੰਨੀ ਪਾੜੇ ਨੂੰ ਪੂਰਾ ਕਰਨਾ',
                 desc1: 'ਭਾਰਤ ਵਿੱਚ, ਲੱਖਾਂ ਨਾਗਰਿਕ ਗੁੰਝਲਦਾਰ ਭਾਸ਼ਾ ਅਤੇ ਪਹੁੰਚਯੋਗ ਸਰੋਤਾਂ ਦੀ ਘਾਟ ਕਾਰਨ ਆਪਣੇ ਕਾਨੂੰਨੀ ਅਧਿਕਾਰਾਂ ਨੂੰ ਸਮਝਣ ਲਈ ਸੰਘਰਸ਼ ਕਰਦੇ ਹਨ।',
-                desc2: 'ਕੋਡਬੰਧੂ ਇੱਕ AI-ਸੰਚਾਲਿਤ ਪਹਿਲਕਦਮੀ ਹੈ ਜਿਸਨੂੰ ਕਾਨੂੰਨੀ ਪਹੁੰਚ ਨੂੰ ਲੋਕਤੰਤਰੀਕਰਨ ਲਈ ਤਿਆਰ ਕੀਤਾ ਗਿਆ ਹੈ। ਅਸੀਂ ਨਿਆਂ ਨੂੰ ਸਾਰਿਆਂ ਲਈ ਪਹੁੰਚਯੋਗ ਬਣਾਉਣ ਲਈ ਅਤਿ-ਆਧੁਨਿਕ ਕੁਦਰਤੀ ਭਾਸ਼ਾ ਪ੍ਰੋਸੈਸਿੰਗ (NLP) ਨੂੰ ਡੂੰਘੀ ਕਾਨੂੰਨੀ ਮੁਹਾਰਤ ਨਾਲ ਜੋੜਦੇ ਹਨ।',
+                desc2: 'NyayaSetu ਇੱਕ AI-ਸੰਚਾਲਿਤ ਪਹਿਲਕਦਮੀ ਹੈ ਜਿਸਨੂੰ ਕਾਨੂੰਨੀ ਪਹੁੰਚ ਨੂੰ ਲੋਕਤੰਤਰੀਕਰਨ ਲਈ ਤਿਆਰ ਕੀਤਾ ਗਿਆ ਹੈ। ਅਸੀਂ ਨਿਆਂ ਨੂੰ ਸਾਰਿਆਂ ਲਈ ਪਹੁੰਚਯੋਗ ਬਣਾਉਣ ਲਈ ਅਤਿ-ਆਧੁਨਿਕ ਕੁਦਰਤੀ ਭਾਸ਼ਾ ਪ੍ਰੋਸੈਸਿੰਗ (NLP) ਨੂੰ ਡੂੰਘੀ ਕਾਨੂੰਨੀ ਮੁਹਾਰਤ ਨਾਲ ਜੋੜਦੇ ਹਨ।',
                 stats: { accuracy: 'ਸ਼ੁੱਧਤਾ ਦਰ', availability: 'ਉਪਲਬਧਤਾ' },
                 citizens: { title: 'ਨਾਗਰਿਕਾਂ ਲਈ', desc: 'ਸਰਲ ਭਾਸ਼ਾ ਵਿੱਚ ਇਕਰਾਰਨਾਮੇ, ਨੋਟਿਸ ਅਤੇ ਅਧਿਕਾਰਾਂ ਨੂੰ ਸਮਝੋ।' },
                 legalAid: { title: 'ਕਾਨੂੰਨੀ ਸਹਾਇਤਾ ਲਈ', desc: 'ਕੇਸ ਪ੍ਰਕਿਰਿਆ ਅਤੇ ਦਸਤਾਵੇਜ਼ ਸਮੀਖਿਆ ਵਿੱਚ ਤੇਜ਼ੀ ਲਿਆਓ।' },
@@ -495,7 +495,7 @@ const translations = {
             },
             contact: {
                 title: 'ਸੰਪਰਕ ਕਰੋ',
-                subtitle: 'ਕੋਡਬੰਧੂ ਬਾਰੇ ਸਵਾਲ ਹਨ? ਸਾਡੀ ਟੀਮ ਪਲੇਟਫਾਰਮ ਨੂੰ ਨੈਵੀਗੇਟ ਕਰਨ ਵਿੱਚ ਤੁਹਾਡੀ ਮਦਦ ਕਰਨ ਲਈ ਇੱਥੇ ਹੈ।',
+                subtitle: 'NyayaSetu ਬਾਰੇ ਸਵਾਲ ਹਨ? ਸਾਡੀ ਟੀਮ ਪਲੇਟਫਾਰਮ ਨੂੰ ਨੈਵੀਗੇਟ ਕਰਨ ਵਿੱਚ ਤੁਹਾਡੀ ਮਦਦ ਕਰਨ ਲਈ ਇੱਥੇ ਹੈ।',
                 firstName: 'ਪਹਿਲਾ ਨਾਮ',
                 lastName: 'ਆਖਰੀ ਨਾਮ',
                 email: 'ਈਮੇਲ ਪਤਾ',
@@ -577,7 +577,7 @@ const translations = {
         },
         login: {
             title: 'ਵਾਪਸੀ ਤੇ ਜੀ ਆਇਆਂ ਨੂੰ',
-            subtitle: 'ਆਪਣੇ ਕੋਡਬੰਧੂ ਖਾਤੇ ਵਿੱਚ ਸਾਈਨ ਇਨ ਕਰੋ',
+            subtitle: 'ਆਪਣੇ NyayaSetu ਖਾਤੇ ਵਿੱਚ ਸਾਈਨ ਇਨ ਕਰੋ',
             email: 'ਈਮੇਲ ਪਤਾ',
             password: 'ਪਾਸਵਰਡ',
             rememberMe: 'ਮੈਨੂੰ ਯਾਦ ਰੱਖੋ',
@@ -590,7 +590,7 @@ const translations = {
         },
         signup: {
             title: 'ਖਾਤਾ ਬਣਾਓ',
-            subtitle: 'ਅੱਜ ਹੀ ਕੋਡਬੰਧੂ ਨਾਲ ਜੁੜੋ',
+            subtitle: 'ਅੱਜ ਹੀ NyayaSetu ਨਾਲ ਜੁੜੋ',
             firstName: 'ਪਹਿਲਾ ਨਾਮ',
             lastName: 'ਆਖਰੀ ਨਾਮ',
             email: 'ਈਮੇਲ ਪਤਾ',
@@ -669,7 +669,7 @@ const translations = {
                 liveDemo: 'நேரடி டெமோ',
             },
             features: {
-                title: 'கோட்பந்துவை ஏன் தேர்வு செய்ய வேண்டும்?',
+                title: 'NyayaSetuவை ஏன் தேர்வு செய்ய வேண்டும்?',
                 subtitle: 'குடிமக்கள், மாணவர்கள் மற்றும் தொழில் வல்லுநர்களுக்கு உதவ இந்திய சட்ட கட்டமைப்பிற்காக குறிப்பாக உருவாக்கப்பட்டது.',
                 simplification: {
                     title: 'உடனடி எளிமைப்படுத்தல்',
@@ -693,13 +693,13 @@ const translations = {
             },
             testimonials: {
                 title: 'ஆயிரக்கணக்கானோரால் நம்பப்படுகிறது',
-                subtitle: 'எங்கள் பயனர்கள் கோட்பந்து பற்றி என்ன சொல்கிறார்கள் என்பதைப் பாருங்கள்.',
+                subtitle: 'எங்கள் பயனர்கள் NyayaSetu பற்றி என்ன சொல்கிறார்கள் என்பதைப் பாருங்கள்.',
             },
             about: {
                 mission: 'எங்கள் நோக்கம்',
                 title: 'சட்ட இடைவெளியைக் குறைத்தல்',
                 desc1: 'இந்தியாவில், சிக்கலான மொழி மற்றும் அணுகக்கூடிய வளங்கள் இல்லாததால் மில்லியன் கணக்கான குடிமக்கள் தங்கள் சட்ட உரிமைகளைப் புரிந்து கொள்ள சிரமப்படுகிறார்கள்.',
-                desc2: 'கோட்பந்து என்பது சட்ட அணுகலை ஜனநாயகப்படுத்த வடிவமைக்கப்பட்ட ஒரு AI-இயங்கும் முயற்சியாகும். கிராமப்புற குடிமக்கள் முதல் நகர்ப்புற தொழில் வல்லுநர்கள் வரை அனைவருக்கும் நீதியை அணுகக்கூடியதாக மாற்ற அதிநவீன இயற்கை மொழி செயலாக்கத்தை (NLP) ஆழ்ந்த சட்ட நிபுணத்துவத்துடன் இணைக்கிறோம்.',
+                desc2: 'NyayaSetu என்பது சட்ட அணுகலை ஜனநாயகப்படுத்த வடிவமைக்கப்பட்ட ஒரு AI-இயங்கும் முயற்சியாகும். கிராமப்புற குடிமக்கள் முதல் நகர்ப்புற தொழில் வல்லுநர்கள் வரை அனைவருக்கும் நீதியை அணுகக்கூடியதாக மாற்ற அதிநவீன இயற்கை மொழி செயலாக்கத்தை (NLP) ஆழ்ந்த சட்ட நிபுணத்துவத்துடன் இணைக்கிறோம்.',
                 stats: { accuracy: 'துல்லிய விகிதம்', availability: 'கிடைக்கும் தன்மை' },
                 citizens: { title: 'குடிமக்களுக்கு', desc: 'ஒப்பந்தங்கள், அறிவிப்புகள் மற்றும் உரிமைகளை எளிய மொழியில் புரிந்து கொள்ளுங்கள்.' },
                 legalAid: { title: 'சட்ட உதவிக்கு', desc: 'வழக்கு செயலாக்கம் மற்றும் ஆவண மதிப்பாய்வை விரைவுபடுத்துங்கள்.' },
@@ -707,7 +707,7 @@ const translations = {
             },
             contact: {
                 title: 'தொடர்பு கொள்ள',
-                subtitle: 'கோட்பந்து பற்றி கேள்விகள் உள்ளதா? தளத்தை வழிநடத்த எங்கள் குழு உங்களுக்கு உதவ இங்கே உள்ளது.',
+                subtitle: 'NyayaSetu பற்றி கேள்விகள் உள்ளதா? தளத்தை வழிநடத்த எங்கள் குழு உங்களுக்கு உதவ இங்கே உள்ளது.',
                 firstName: 'முதல் பெயர்',
                 lastName: 'கடைசி பெயர்',
                 email: 'மின்னஞ்சல் முகவரி',
@@ -789,7 +789,7 @@ const translations = {
         },
         login: {
             title: 'மீண்டும் வருக',
-            subtitle: 'உங்கள் கோட்பந்து கணக்கில் உள்நுழையவும்',
+            subtitle: 'உங்கள் NyayaSetu கணக்கில் உள்நுழையவும்',
             email: 'மின்னஞ்சல் முகவரி',
             password: 'கடவுச்சொல்',
             rememberMe: 'என்னை நினைவில் கொள்',

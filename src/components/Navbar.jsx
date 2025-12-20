@@ -36,7 +36,7 @@ export default function Navbar() {
                         <Shield className="w-6 h-6 text-white" />
                     </div>
                     <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">
-                        CodeBandhu
+                        NyayaSetu
                     </span>
                 </Link>
 
@@ -125,6 +125,6 @@ export default function Navbar() {
                     </Link>
                 </div>
             </div>
-        </nav>
+        </nav >
     );
 }

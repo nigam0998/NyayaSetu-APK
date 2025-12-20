@@ -34,7 +34,7 @@ export default function Sidebar() {
                     <Shield className="w-6 h-6 text-white" />
                 </div>
                 <h1 className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--text-primary)] to-[var(--text-primary)]/60">
-                    CodeBandhu
+                    NyayaSetu
                 </h1>
             </div>
 

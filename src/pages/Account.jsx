@@ -13,7 +13,7 @@ export default function Account() {
     const [formData, setFormData] = useState({
         firstName: 'User',
         lastName: 'Name',
-        email: currentUser?.email || 'user@codebandhu.in',
+        email: currentUser?.email || 'user@nyayasetu.in',
     });
 
     const [profileImage, setProfileImage] = useState(null);

@@ -45,10 +45,10 @@ export function AuthProvider({ children }) {
 
     const login = async (email, password) => {
         // Check for Admin Credentials
-        if (email === 'admin@codebandhu.in' && password === 'admin@123') {
+        if (email === 'admin@nyayasetu.in' && password === 'admin@123') {
             const adminUser = {
                 id: 'admin-user',
-                email: 'admin@codebandhu.in',
+                email: 'admin@nyayasetu.in',
                 user_metadata: {
                     first_name: 'Admin',
                     last_name: 'User'

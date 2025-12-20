@@ -31,7 +31,7 @@ export default function AdminLayout() {
                     </div>
                     <div>
                         <h1 className="text-xl font-bold">Admin Panel</h1>
-                        <p className="text-xs text-slate-400">CodeBandhu</p>
+                        <p className="text-xs text-slate-400">NyayaSetu</p>
                     </div>
                 </div>
 
@@ -75,7 +75,7 @@ export default function AdminLayout() {
                         </div>
                         <div>
                             <h1 className="text-xl font-bold">Admin Panel</h1>
-                            <p className="text-xs text-slate-400">CodeBandhu</p>
+                            <p className="text-xs text-slate-400">NyayaSetu</p>
                         </div>
                     </div>
                     <button

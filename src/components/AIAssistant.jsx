@@ -9,7 +9,7 @@ import { useConfig } from '../contexts/ConfigContext';
 
 const INITIAL_MESSAGE = {
     id: 1,
-    text: "Namaste! I am your CodeBandhu Legal Assistant. How can I help you understand your documents today?",
+    text: "Namaste! I am your NyayaSetu Legal Assistant. How can I help you understand your documents today?",
     sender: 'bot',
     timestamp: new Date()
 };

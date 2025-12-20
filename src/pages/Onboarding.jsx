@@ -6,7 +6,7 @@ import { cn } from '../lib/utils';
 const slides = [
     {
         id: 1,
-        title: "Welcome to CodeBandhu",
+        title: "Welcome to NyayaSetu",
         description: "Your personal AI Legal Assistant. Simplifying law for everyone.",
         icon: Shield,
         color: "text-neon-blue",
