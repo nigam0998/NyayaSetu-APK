@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { FileText, List, Shield, AlertCircle, Check, BookOpen, ArrowLeft, Sparkles } from 'lucide-react';
+import { FileText, List, Shield, AlertCircle, Check, BookOpen, ArrowLeft, Sparkles, MessageSquare, Send, User, Bot } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { GoogleGenerativeAI } from '@google/generative-ai';
+import { useConfig } from '../contexts/ConfigContext';
 
 export default function Results() {
     const [activeTab, setActiveTab] = useState('simplification');
+    const { geminiApiKey } = useConfig();
     const location = useLocation();
     const navigate = useNavigate();
 
     const analysisData = location.state?.analysis || {};
     const fileName = location.state?.fileName || 'Document.pdf';
+    const documentText = location.state?.documentText || '';
 
     const tabs = [
         { id: 'simplification', label: 'Simplification', icon: FileText },
         { id: 'summary', label: 'Summary', icon: List },
         { id: 'advisory', label: 'Legal Advisory', icon: Shield },
+        { id: 'chatbot', label: 'Ask AI', icon: MessageSquare },
     ];
 
     return (
@@ -58,6 +63,7 @@ export default function Results() {
                     {activeTab === 'simplification' && <SimplificationView data={analysisData} />}
                     {activeTab === 'summary' && <SummaryView data={analysisData} />}
                     {activeTab === 'advisory' && <AdvisoryView data={analysisData} navigate={navigate} />}
+                    {activeTab === 'chatbot' && <ChatbotView documentText={documentText} apiKey={geminiApiKey} />}
                 </div>
             </div>
         </div>
@@ -241,6 +247,145 @@ function AdvisoryView({ data, navigate }) {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function ChatbotView({ documentText, apiKey }) {
+    const [messages, setMessages] = useState([
+        { role: 'model', text: 'Hello! I have analyzed your document. Ask me anything about its clauses, obligations, or legal implications.' }
+    ]);
+    const [input, setInput] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
+    const messagesEndRef = useRef(null);
+
+    const scrollToBottom = () => {
+        messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    };
+
+    useEffect(() => {
+        scrollToBottom();
+    }, [messages]);
+
+    const handleSend = async () => {
+        if (!input.trim() || !apiKey) return;
+
+        const userMessage = input.trim();
+        setInput('');
+        setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
+        setIsLoading(true);
+
+        try {
+            const genAI = new GoogleGenerativeAI(apiKey);
+            const model = genAI.getGenerativeModel({ model: "gemini-flash-latest" });
+
+            const prompt = `
+Context: You are a helpful legal assistant. You have access to the following legal document text:
+"""
+${documentText}
+"""
+
+User Question: ${userMessage}
+
+Instructions: Answer the user's question based strictly on the provided document text. If the answer is not in the document, say so. Keep your answer clear, concise, and helpful. Avoid using complex legal jargon where possible, or explain it if necessary.
+`;
+
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            const text = response.text();
+
+            setMessages(prev => [...prev, { role: 'model', text: text }]);
+        } catch (error) {
+            console.error("Chat error:", error);
+            const errorMessage = error.message || "Unknown error occurred";
+            setMessages(prev => [...prev, { role: 'model', text: `I'm sorry, I encountered an error: ${errorMessage}. Please check your API key and try again.` }]);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            handleSend();
+        }
+    };
+
+    if (!documentText) {
+        return (
+            <div className="flex flex-col items-center justify-center p-12 text-center h-full min-h-[400px]">
+                <AlertCircle className="w-12 h-12 text-slate-500 mb-4" />
+                <h3 className="text-xl font-bold text-white mb-2">Document Context Missing</h3>
+                <p className="text-slate-400 max-w-md">
+                    I don't have access to the document text. Please try re-uploading the file.
+                </p>
+            </div>
+        );
+    }
+
+    return (
+        <div className="flex flex-col h-[600px]">
+            <div className="flex-1 overflow-y-auto p-6 space-y-6 scrollbar-thin scrollbar-thumb-white/10 scrollbar-track-transparent">
+                {messages.map((msg, idx) => (
+                    <div
+                        key={idx}
+                        className={cn(
+                            "flex gap-4 max-w-[80%]",
+                            msg.role === 'user' ? "ml-auto flex-row-reverse" : "mr-auto"
+                        )}
+                    >
+                        <div className={cn(
+                            "w-8 h-8 rounded-full flex items-center justify-center shrink-0",
+                            msg.role === 'user' ? "bg-neon-blue text-black" : "bg-white/10 text-white"
+                        )}>
+                            {msg.role === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
+                        </div>
+                        <div className={cn(
+                            "p-4 rounded-2xl text-sm leading-relaxed",
+                            msg.role === 'user'
+                                ? "bg-neon-blue/10 border border-neon-blue/20 text-white rounded-tr-none"
+                                : "bg-white/5 border border-white/10 text-slate-300 rounded-tl-none"
+                        )}>
+                            {msg.text}
+                        </div>
+                    </div>
+                ))}
+                {isLoading && (
+                    <div className="flex gap-4 max-w-[80%] mr-auto">
+                        <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                            <Bot className="w-4 h-4 text-white" />
+                        </div>
+                        <div className="p-4 rounded-2xl bg-white/5 border border-white/10 rounded-tl-none">
+                            <div className="flex gap-1.5">
+                                <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '0ms' }} />
+                                <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '150ms' }} />
+                                <div className="w-2 h-2 rounded-full bg-slate-400 animate-bounce" style={{ animationDelay: '300ms' }} />
+                            </div>
+                        </div>
+                    </div>
+                )}
+                <div ref={messagesEndRef} />
+            </div>
+
+            <div className="p-6 border-t border-white/10 bg-black/20 backdrop-blur-md">
+                <div className="relative">
+                    <input
+                        type="text"
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        onKeyDown={handleKeyPress}
+                        placeholder="Ask a question about the document..."
+                        className="w-full bg-white/5 border border-white/10 rounded-xl py-4 pl-6 pr-14 text-white placeholder-slate-500 focus:outline-none focus:border-neon-blue/50 focus:bg-white/10 transition-all"
+                    />
+                    <button
+                        onClick={handleSend}
+                        disabled={!input.trim() || isLoading}
+                        className="absolute right-2 top-2 p-2 rounded-lg bg-neon-blue/10 text-neon-blue hover:bg-neon-blue hover:text-black transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-neon-blue/10 disabled:hover:text-neon-blue"
+                    >
+                        <Send className="w-5 h-5" />
+                    </button>
                 </div>
             </div>
         </div>
